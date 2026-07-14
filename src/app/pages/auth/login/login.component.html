@@ -1,0 +1,73 @@
+<div class="login-welcome">
+  <h1 class="login-title">Xin chào!</h1>
+  <p class="login-subtitle">Đăng nhập để tiếp tục quản lý hệ thống</p>
+</div>
+
+<form (ngSubmit)="onLogin()" class="login-form" #loginForm="ngForm">
+  @if (error) {
+    <div class="login-alert">
+      <span nz-icon nzType="warning" nzTheme="fill"></span>
+      <span>{{ error }}</span>
+    </div>
+  }
+
+  <div class="login-field">
+    <label class="login-label" for="username">Email</label>
+    <nz-input-wrapper class="login-input-wrap">
+      <span nzInputPrefix>
+        <span nz-icon nzType="mail" nzTheme="outline"></span>
+      </span>
+      <input
+        id="username"
+        nz-input
+        [(ngModel)]="username"
+        name="username"
+        type="email"
+        placeholder="Nhập email của bạn"
+        autocomplete="email"
+        required
+      />
+    </nz-input-wrapper>
+  </div>
+
+  <div class="login-field">
+    <label class="login-label" for="password">Mật khẩu</label>
+    <nz-input-wrapper class="login-input-wrap">
+      <span nzInputPrefix>
+        <span nz-icon nzType="lock" nzTheme="outline"></span>
+      </span>
+      <input
+        id="password"
+        nz-input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Nhập mật khẩu"
+        autocomplete="current-password"
+        required
+      />
+      <span nzInputSuffix>
+        <button type="button" class="login-eye" (click)="showPassword = !showPassword" tabindex="-1">
+          <span nz-icon [nzType]="showPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+        </button>
+      </span>
+    </nz-input-wrapper>
+  </div>
+
+  <div class="login-options">
+    <label class="login-remember" (click)="$event.stopPropagation()">
+      <span class="login-checkbox">
+        <span nz-icon nzType="check" nzTheme="outline"></span>
+      </span>
+      <span>Ghi nhớ đăng nhập</span>
+    </label>
+    <a routerLink="/auth/forgot-password" class="login-forgot">Quên mật khẩu?</a>
+  </div>
+
+  <button nz-button nzType="primary" nzBlock [nzLoading]="loading" class="login-btn">
+    @if (!loading) {
+      <span nz-icon nzType="login" nzTheme="outline"></span>
+    }
+    <span>Đăng nhập</span>
+  </button>
+</form>

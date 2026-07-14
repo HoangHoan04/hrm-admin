@@ -1,0 +1,39 @@
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { SharedModule } from '../../shared/shared.module';
+import { AuthLayoutComponent } from '../../layout/auth-layout/auth-layout.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LoginComponent } from './login/login.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'reset-password', component: ForgotPasswordComponent },
+    ],
+  },
+];
+
+@NgModule({
+  declarations: [LoginComponent, ForgotPasswordComponent, AuthLayoutComponent],
+  imports: [
+    FormsModule,
+    SharedModule,
+    RouterModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzIconModule,
+    NzInputModule,
+    RouterModule.forChild(routes),
+  ],
+})
+export class AuthModule {}

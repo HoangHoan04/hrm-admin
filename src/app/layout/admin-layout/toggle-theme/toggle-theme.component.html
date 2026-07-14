@@ -1,0 +1,26 @@
+<button
+  class="navbar-action"
+  (click)="cycleTheme()"
+  [title]="('navbar.changeTheme' | translate) + ': ' + themeLabel"
+>
+  <span nz-icon [nzType]="themeIcon" nzTheme="outline"></span>
+</button>
+
+@if (animating && nextTheme) {
+  <div class="tt-overlay" (animationend)="onOverlayAnimEnd()">
+    <div class="tt-panel tt-panel-left"></div>
+    <div class="tt-panel tt-panel-right"></div>
+    <div class="tt-rocket tt-rocket-left">
+      <span nz-icon nzType="rocket" nzTheme="fill"></span>
+    </div>
+    <div class="tt-rocket tt-rocket-right">
+      <span nz-icon nzType="rocket" nzTheme="fill"></span>
+    </div>
+    <div class="tt-explosion">
+      <div class="tt-shockwave"></div>
+      @for (p of [1, 2, 3, 4, 5, 6, 7, 8]; track $index) {
+        <div class="tt-particle"></div>
+      }
+    </div>
+  </div>
+}

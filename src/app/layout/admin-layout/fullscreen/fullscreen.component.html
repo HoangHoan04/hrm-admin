@@ -1,0 +1,7 @@
+<button
+  class="navbar-action"
+  (click)="toggle()"
+  [title]="isFullscreen ? ('fullscreen.exit' | translate) : ('fullscreen.enter' | translate)"
+>
+  <span nz-icon [nzType]="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" nzTheme="outline"></span>
+</button>

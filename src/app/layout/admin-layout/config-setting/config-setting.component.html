@@ -1,0 +1,658 @@
+<nz-drawer
+  [nzVisible]="configOpen$ | async"
+  [nzPlacement]="s.configPosition"
+  nzWidth="440"
+  nzClosable="false"
+  (nzOnClose)="close()"
+  nzMaskClosable="true"
+>
+  <div class="config-drawer" *nzDrawerContent>
+    <div class="config-header">
+      <span nz-icon nzType="setting" nzTheme="outline" class="config-header-icon"></span>
+      <span class="config-header-title">{{ 'configSetting.title' | translate }}</span>
+    </div>
+
+    <div class="config-body">
+      <!-- GENERAL -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.general' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.language' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.language"
+            (ngModelChange)="update({ language: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            <nz-option nzValue="vi" nzLabel="Tiếng Việt"></nz-option>
+            <nz-option nzValue="en" nzLabel="English"></nz-option>
+          </nz-select>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.dynamicTitle' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.dynamicTitle"
+            (ngModelChange)="update({ dynamicTitle: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.backToTop' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.backToTop"
+            (ngModelChange)="update({ backToTop: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.watermark' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.watermark"
+            (ngModelChange)="update({ watermark: $event })"
+          ></nz-switch>
+        </div>
+
+        @if (s.watermark) {
+          <div class="config-sub">
+            <span class="config-label config-label--sub">{{
+              'configSetting.watermarkText' | translate
+            }}</span>
+            <input
+              nz-input
+              [(ngModel)]="s.watermarkText"
+              (ngModelChange)="update({ watermarkText: $event })"
+              class="config-input"
+            />
+          </div>
+        }
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- INTERFACE -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.interface' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.theme' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.theme"
+            (ngModelChange)="update({ theme: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            <nz-option
+              nzValue="light"
+              [nzLabel]="'configSetting.themeLight' | translate"
+            ></nz-option>
+            <nz-option nzValue="dark" [nzLabel]="'configSetting.themeDark' | translate"></nz-option>
+            <nz-option
+              nzValue="system"
+              [nzLabel]="'configSetting.themeSystem' | translate"
+            ></nz-option>
+          </nz-select>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.colorBlind' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.colorBlind"
+            (ngModelChange)="update({ colorBlind: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.grayscale' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.grayscale"
+            (ngModelChange)="update({ grayscale: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.borderRadius' | translate }} ({{ s.borderRadius }}px)</span
+          >
+          <nz-slider
+            [(ngModel)]="s.borderRadius"
+            (ngModelChange)="update({ borderRadius: $event })"
+            [nzMin]="0"
+            [nzMax]="24"
+            [nzStep]="2"
+          ></nz-slider>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.fontFamily' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.fontFamily"
+            (ngModelChange)="update({ fontFamily: $event })"
+            nzSize="small"
+            style="width: 140px"
+          >
+            @for (f of fontFamilies; track $index) {
+              <nz-option [nzValue]="f" [nzLabel]="f"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.fontWeight' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.fontWeight"
+            (ngModelChange)="update({ fontWeight: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            <nz-option nzValue="light" nzLabel="Light"></nz-option>
+            <nz-option nzValue="normal" nzLabel="Normal"></nz-option>
+            <nz-option nzValue="medium" nzLabel="Medium"></nz-option>
+            <nz-option nzValue="semibold" nzLabel="Semibold"></nz-option>
+          </nz-select>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.titleSize' | translate }} ({{ s.titleSize }}px)</span
+          >
+          <nz-slider
+            [(ngModel)]="s.titleSize"
+            (ngModelChange)="update({ titleSize: $event })"
+            [nzMin]="14"
+            [nzMax]="32"
+          ></nz-slider>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.bodySize' | translate }} ({{ s.bodySize }}px)</span
+          >
+          <nz-slider
+            [(ngModel)]="s.bodySize"
+            (ngModelChange)="update({ bodySize: $event })"
+            [nzMin]="12"
+            [nzMax]="20"
+          ></nz-slider>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.boldText' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.boldText"
+            (ngModelChange)="update({ boldText: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.italicText' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.italicText"
+            (ngModelChange)="update({ italicText: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.uppercaseText' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.uppercaseText"
+            (ngModelChange)="update({ uppercaseText: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-color-picker">
+          <span class="config-label">{{ 'configSetting.primaryColor' | translate }}</span>
+          <div class="color-grid">
+            @for (c of primaryColors; track $index) {
+              <button
+                class="color-swatch"
+                [class.active]="s.primaryColor === c.value"
+                [style.background]="c.value"
+                (click)="update({ primaryColor: c.value })"
+              >
+                @if (s.primaryColor === c.value) {
+                  <span class="color-dot"></span>
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Navbar Color -->
+        <div class="config-color-section">
+          <div class="config-row">
+            <span class="config-label">{{ 'configSetting.navbarColor' | translate }}</span>
+            <nz-select
+              [(ngModel)]="s.navbarColorType"
+              (ngModelChange)="update({ navbarColorType: $event })"
+              nzSize="small"
+              style="width: 110px"
+            >
+              <nz-option
+                nzValue="solid"
+                [nzLabel]="'configSetting.solidColor' | translate"
+              ></nz-option>
+              <nz-option
+                nzValue="gradient"
+                [nzLabel]="'configSetting.gradientColor' | translate"
+              ></nz-option>
+            </nz-select>
+          </div>
+          @for (mode of ['light', 'dark']; track $index) {
+            <div class="config-sub">
+              <span class="config-label config-label--sub">{{
+                mode === 'light'
+                  ? ('configSetting.themeLight' | translate)
+                  : ('configSetting.themeDark' | translate)
+              }}</span>
+              <div class="color-grid">
+                @for (color of navbarPalette(mode); track $index) {
+                  <button
+                    class="color-swatch"
+                    [class.active]="
+                      (mode === 'light' ? s.navbarColorLight : s.navbarColorDark) === color
+                    "
+                    [style.background]="color"
+                    (click)="
+                      mode === 'light'
+                        ? update({ navbarColorLight: color })
+                        : update({ navbarColorDark: color })
+                    "
+                  >
+                    @if ((mode === 'light' ? s.navbarColorLight : s.navbarColorDark) === color) {
+                      <span class="color-dot" [class.color-dot--dark]="mode === 'dark'"></span>
+                    }
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Sidebar Color -->
+        <div class="config-color-section">
+          <div class="config-row">
+            <span class="config-label">{{ 'configSetting.sidebarColor' | translate }}</span>
+            <nz-select
+              [(ngModel)]="s.sidebarColorType"
+              (ngModelChange)="update({ sidebarColorType: $event })"
+              nzSize="small"
+              style="width: 110px"
+            >
+              <nz-option
+                nzValue="solid"
+                [nzLabel]="'configSetting.solidColor' | translate"
+              ></nz-option>
+              <nz-option
+                nzValue="gradient"
+                [nzLabel]="'configSetting.gradientColor' | translate"
+              ></nz-option>
+            </nz-select>
+          </div>
+          @for (mode of ['light', 'dark']; track $index) {
+            <div class="config-sub">
+              <span class="config-label config-label--sub">{{
+                mode === 'light'
+                  ? ('configSetting.themeLight' | translate)
+                  : ('configSetting.themeDark' | translate)
+              }}</span>
+              <div class="color-grid">
+                @for (color of sidebarPalette(mode); track $index) {
+                  <button
+                    class="color-swatch"
+                    [class.active]="
+                      (mode === 'light' ? s.sidebarColorLight : s.sidebarColorDark) === color
+                    "
+                    [style.background]="color"
+                    (click)="
+                      mode === 'light'
+                        ? update({ sidebarColorLight: color })
+                        : update({ sidebarColorDark: color })
+                    "
+                  >
+                    @if ((mode === 'light' ? s.sidebarColorLight : s.sidebarColorDark) === color) {
+                      <span class="color-dot" [class.color-dot--dark]="mode === 'dark'"></span>
+                    }
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- LAYOUT -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.layout' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.layoutMode' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.layoutMode"
+            (ngModelChange)="update({ layoutMode: $event })"
+            nzSize="small"
+            style="width: 160px"
+          >
+            @for (m of layoutModes; track $index) {
+              <nz-option [nzValue]="m" [nzLabel]="m | uppercase"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.sidebarPosition' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.sidebarPosition"
+            (ngModelChange)="update({ sidebarPosition: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            <nz-option nzValue="left" nzLabel="Trái"></nz-option>
+            <nz-option nzValue="right" nzLabel="Phải"></nz-option>
+          </nz-select>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.configPosition' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.configPosition"
+            (ngModelChange)="update({ configPosition: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            <nz-option
+              nzValue="left"
+              [nzLabel]="'configSetting.positionLeft' | translate"
+            ></nz-option>
+            <nz-option
+              nzValue="right"
+              [nzLabel]="'configSetting.positionRight' | translate"
+            ></nz-option>
+          </nz-select>
+        </div>
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- SIDEBAR -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.sidebar' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.showSidebar' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.showSidebar"
+            (ngModelChange)="update({ showSidebar: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.collapseSidebar' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.collapseSidebar"
+            (ngModelChange)="update({ collapseSidebar: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.sidebarWidth' | translate }} ({{ s.sidebarWidth }}px)</span
+          >
+          <nz-slider
+            [(ngModel)]="s.sidebarWidth"
+            (ngModelChange)="update({ sidebarWidth: $event })"
+            [nzMin]="200"
+            [nzMax]="320"
+          ></nz-slider>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.sidebarCollapsedWidth' | translate }} ({{
+              s.sidebarCollapsedWidth
+            }}px)</span
+          >
+          <nz-slider
+            [(ngModel)]="s.sidebarCollapsedWidth"
+            (ngModelChange)="update({ sidebarCollapsedWidth: $event })"
+            [nzMin]="60"
+            [nzMax]="100"
+          ></nz-slider>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.accordionMenu' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.accordionMenu"
+            (ngModelChange)="update({ accordionMenu: $event })"
+          ></nz-switch>
+        </div>
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- TABS -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.tabs' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.showTabs' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.showTabs"
+            (ngModelChange)="update({ showTabs: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.persistTabs' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.persistTabs"
+            (ngModelChange)="update({ persistTabs: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.dragTabs' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.dragTabs"
+            (ngModelChange)="update({ dragTabs: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.showTabIcons' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.showTabIcons"
+            (ngModelChange)="update({ showTabIcons: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.showMaximizeTab' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.showMaximizeTab"
+            (ngModelChange)="update({ showMaximizeTab: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.tabStyle' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.tabStyle"
+            (ngModelChange)="update({ tabStyle: $event })"
+            nzSize="small"
+            style="width: 120px"
+          >
+            @for (t of tabStyles; track $index) {
+              <nz-option [nzValue]="t" [nzLabel]="t | titlecase"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="config-row config-row--col">
+          <span class="config-label"
+            >{{ 'configSetting.maxTabs' | translate }} ({{ s.maxTabs }})</span
+          >
+          <nz-slider
+            [(ngModel)]="s.maxTabs"
+            (ngModelChange)="update({ maxTabs: $event })"
+            [nzMin]="3"
+            [nzMax]="20"
+          ></nz-slider>
+        </div>
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- EFFECTS -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.effects' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.pageProgress' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.pageProgress"
+            (ngModelChange)="update({ pageProgress: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.pageLoader' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.pageLoader"
+            (ngModelChange)="update({ pageLoader: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.pageTransition' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.pageTransition"
+            (ngModelChange)="update({ pageTransition: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.transitionEffect' | translate }}</span>
+          <nz-select
+            [(ngModel)]="s.transitionEffect"
+            (ngModelChange)="update({ transitionEffect: $event })"
+            nzSize="small"
+            style="width: 140px"
+          >
+            @for (e of transitionEffects; track $index) {
+              <nz-option [nzValue]="e" [nzLabel]="e"></nz-option>
+            }
+          </nz-select>
+        </div>
+      </section>
+
+      <nz-divider></nz-divider>
+
+      <!-- FOOTER -->
+      <section class="config-section">
+        <h4 class="config-section-title">{{ 'configSetting.tab.footer' | translate }}</h4>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.showFooter' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.showFooter"
+            (ngModelChange)="update({ showFooter: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-row">
+          <span class="config-label">{{ 'configSetting.fixedFooter' | translate }}</span>
+          <nz-switch
+            [(ngModel)]="s.fixedFooter"
+            (ngModelChange)="update({ fixedFooter: $event })"
+          ></nz-switch>
+        </div>
+
+        <div class="config-sub">
+          <span class="config-label config-label--sub">{{
+            'configSetting.companyName' | translate
+          }}</span>
+          <input
+            nz-input
+            [(ngModel)]="s.companyName"
+            (ngModelChange)="update({ companyName: $event })"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-sub">
+          <span class="config-label config-label--sub">{{
+            'configSetting.companyWebsite' | translate
+          }}</span>
+          <input
+            nz-input
+            [(ngModel)]="s.companyWebsite"
+            (ngModelChange)="update({ companyWebsite: $event })"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-sub">
+          <span class="config-label config-label--sub">{{
+            'configSetting.copyrightYear' | translate
+          }}</span>
+          <input
+            nz-input
+            [(ngModel)]="s.copyrightYear"
+            (ngModelChange)="update({ copyrightYear: $event })"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-sub">
+          <span class="config-label config-label--sub">{{
+            'configSetting.icpNumber' | translate
+          }}</span>
+          <input
+            nz-input
+            [(ngModel)]="s.icpNumber"
+            (ngModelChange)="update({ icpNumber: $event })"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-sub">
+          <span class="config-label config-label--sub">{{
+            'configSetting.icpLink' | translate
+          }}</span>
+          <input
+            nz-input
+            [(ngModel)]="s.icpLink"
+            (ngModelChange)="update({ icpLink: $event })"
+            class="config-input"
+          />
+        </div>
+      </section>
+    </div>
+
+    <div class="config-footer">
+      <button nz-button nzSize="small" (click)="reset()">
+        <span nz-icon nzType="reload" nzTheme="outline"></span>
+        {{ 'configSetting.reset' | translate }}
+      </button>
+      <button nz-button nzSize="small" (click)="copyConfig()">
+        <span nz-icon nzType="copy" nzTheme="outline"></span>
+        {{ 'configSetting.copyConfig' | translate }}
+      </button>
+      <button
+        nz-button
+        nzSize="small"
+        nzDanger
+        (click)="clearCacheAndLogout()"
+        class="config-logout-btn"
+      >
+        <span nz-icon nzType="logout" nzTheme="outline"></span>
+        {{ 'configSetting.clearCacheLogout' | translate }}
+      </button>
+    </div>
+  </div>
+</nz-drawer>

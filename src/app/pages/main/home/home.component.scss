@@ -1,0 +1,27 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-header {
+  margin-bottom: 24px;
+}
+
+.home-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 4px;
+}
+
+.home-subtitle {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.home-description {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin-top: 12px;
+  line-height: 1.6;
+}

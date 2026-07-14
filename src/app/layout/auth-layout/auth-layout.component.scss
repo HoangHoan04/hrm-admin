@@ -1,0 +1,192 @@
+.auth-layout {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #dbeafe 100%);
+}
+
+html.dark .auth-layout {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #172554 100%);
+}
+
+/* ── Background blobs ── */
+.auth-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.auth-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+.auth-blob--1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -150px;
+  background: #818cf8;
+  animation: floatBlob 20s ease-in-out infinite;
+}
+
+.auth-blob--2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -100px;
+  background: #6366f1;
+  animation: floatBlob 25s ease-in-out infinite reverse;
+}
+
+.auth-blob--3 {
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  left: 60%;
+  background: #60a5fa;
+  animation: floatBlob 18s ease-in-out infinite 2s;
+}
+
+.auth-blob--4 {
+  width: 250px;
+  height: 250px;
+  top: 20%;
+  right: 10%;
+  background: #a78bfa;
+  animation: floatBlob 22s ease-in-out infinite 4s;
+}
+
+html.dark .auth-blob--1 { background: #4f46e5; }
+html.dark .auth-blob--2 { background: #3730a3; }
+html.dark .auth-blob--3 { background: #2563eb; }
+html.dark .auth-blob--4 { background: #7c3aed; }
+
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(40px, 30px) scale(1.02); }
+}
+
+/* ── Grid overlay ── */
+.auth-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+html.dark .auth-grid {
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+}
+
+/* ── Content ── */
+.auth-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Brand ── */
+.auth-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary, #3b82f6);
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.auth-logo:hover {
+  transform: scale(1.05);
+}
+
+.auth-brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--foreground, #1f2937);
+  letter-spacing: -0.5px;
+}
+
+html.dark .auth-brand {
+  color: #e2e8f0;
+}
+
+/* ── Card ── */
+.auth-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 40px 36px 36px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 20px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark .auth-card {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(51, 65, 85, 0.5);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Footer ── */
+.auth-copy {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--muted-foreground, #94a3b8);
+  text-align: center;
+}
+
+html.dark .auth-copy {
+  color: #64748b;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 32px 24px 28px;
+    border-radius: 12px;
+  }
+
+  .auth-header {
+    margin-bottom: 24px;
+  }
+
+  .auth-brand {
+    font-size: 20px;
+  }
+}
