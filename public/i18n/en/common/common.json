@@ -1,0 +1,23 @@
+{
+  "common": {
+    "developing": "This feature is under development.",
+    "goHome": "Go to Homepage",
+    "retry": "Try Again",
+    "stt": "No.",
+    "actionsHeader": "Actions",
+    "actions": {
+      "create": "Add New",
+      "update": "Update",
+      "delete": "Delete",
+      "refresh": "Refresh",
+      "uploadExcel": "Import Excel",
+      "downloadTemplate": "Download Template",
+      "uploadFile": "Upload File",
+      "exportExcel": "Export Excel",
+      "exportPdf": "Export PDF",
+      "save": "Save",
+      "cancel": "Cancel",
+      "view": "View Details"
+    }
+  }
+}

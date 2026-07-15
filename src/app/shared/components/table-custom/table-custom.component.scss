@@ -9,7 +9,6 @@
   color: var(--foreground);
 }
 
-/* TOOLBAR */
 .table-custom-toolbar {
   display: flex;
   align-items: center;
@@ -26,6 +25,68 @@
   gap: 12px;
 }
 
+.toolbar-btn {
+  height: 32px !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+
+  &.severity-primary {
+    border: 1px solid var(--primary, #3b82f6) !important;
+    color: var(--primary, #3b82f6) !important;
+    &:hover {
+      background: rgba(59, 130, 246, 0.08) !important;
+    }
+  }
+
+  &.severity-success {
+    border: 1px solid #2e7d32 !important;
+    color: #2e7d32 !important;
+    &:hover {
+      background: rgba(46, 125, 50, 0.08) !important;
+    }
+  }
+
+  &.severity-info {
+    border: 1px solid #0288d1 !important;
+    color: #0288d1 !important;
+    &:hover {
+      background: rgba(2, 136, 209, 0.08) !important;
+    }
+  }
+
+  &.severity-warning {
+    border: 1px solid #ed6c02 !important;
+    color: #ed6c02 !important;
+    &:hover {
+      background: rgba(237, 108, 2, 0.08) !important;
+    }
+  }
+
+  &.severity-danger {
+    border: 1px solid #d32f2f !important;
+    color: #d32f2f !important;
+    &:hover {
+      background: rgba(211, 47, 47, 0.08) !important;
+    }
+  }
+
+  &.severity-secondary {
+    border: 1px solid #9e9e9e !important;
+    color: #9e9e9e !important;
+    &:hover {
+      background: rgba(158, 158, 158, 0.08) !important;
+    }
+  }
+}
+
 .toolbar-right {
   display: flex;
   align-items: center;
@@ -33,7 +94,6 @@
   margin-left: auto;
 }
 
-/* DENSITY SELECTOR */
 .density-selector {
   display: flex;
   align-items: center;
@@ -74,7 +134,6 @@
   }
 }
 
-/* REFRESH & CONFIG COG BUTTONS */
 .toolbar-action-btn {
   height: 32px !important;
   width: 32px !important;
@@ -101,7 +160,6 @@
   }
 }
 
-/* CONFIG DROPDOWN MENU */
 .config-dropdown {
   position: relative;
 }
@@ -166,7 +224,6 @@
   cursor: pointer;
 }
 
-/* TABLE SCROLL WRAPPER */
 .table-scroll-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -176,10 +233,11 @@
 }
 
 .shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
-/* CUSTOM DATA TABLE */
 .custom-data-table {
   width: max-content;
   min-width: 100%;
@@ -188,7 +246,6 @@
   text-align: left;
 
   &.gridlines {
-
     th,
     td {
       border-right: 1px solid var(--border);
@@ -200,7 +257,6 @@
   }
 }
 
-/* STICKY COLUMNS */
 .sticky-col {
   position: sticky !important;
   z-index: 10;
@@ -225,7 +281,6 @@ th.sticky-col {
   box-shadow: -3px 0 8px -2px rgba(0, 0, 0, 0.08);
 }
 
-/* HEADER CELLS */
 .header-cell {
   background-color: var(--muted);
   color: var(--foreground);
@@ -298,7 +353,6 @@ th.sticky-col {
   }
 }
 
-/* RESIZE HANDLE */
 .col-resize-handle {
   position: absolute;
   right: 0;
@@ -314,7 +368,6 @@ th.sticky-col {
   }
 }
 
-/* BODY CELLS & ROWS */
 .table-data-row {
   border-bottom: 1px solid var(--border);
   transition: background-color 0.15s ease;
@@ -336,7 +389,6 @@ th.sticky-col {
   white-space: nowrap;
 }
 
-/* CHECKBOX & STT CELLS */
 .checkbox-cell,
 .stt-cell {
   width: 48px;
@@ -360,7 +412,6 @@ th.sticky-col {
   justify-content: center;
 }
 
-/* DENSITY PADDINGS */
 .density-small {
   padding: 6px 10px !important;
   font-size: 12px !important;
@@ -376,7 +427,6 @@ th.sticky-col {
   font-size: 15px !important;
 }
 
-/* STATUS BADGES & TAGS */
 .badge-status {
   padding: 2px 8px;
   border-radius: 9999px;
@@ -434,7 +484,6 @@ th.sticky-col {
   }
 }
 
-/* ROW ACTIONS */
 .row-actions-container {
   display: flex;
   align-items: center;
@@ -515,7 +564,6 @@ th.sticky-col {
   }
 }
 
-/* LOADING & EMPTY STATE */
 .loading-state-wrapper,
 .empty-state-wrapper {
   display: flex;
@@ -539,7 +587,6 @@ th.sticky-col {
   opacity: 0.6;
 }
 
-/* PAGINATION */
 .table-pagination-container {
   display: flex;
   align-items: center;

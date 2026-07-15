@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "part": {
+      "title": "Part Management",
+      "code": "Part Code",
+      "name": "Part Name",
+      "departmentName": "Department/Part",
+      "status": "Status",
+      "createdAt": "Created Date",
+      "description": "Detailed Description"
+    }
+  }
+}

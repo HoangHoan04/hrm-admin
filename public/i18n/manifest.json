@@ -1,0 +1,19 @@
+[
+  "common/auth.json",
+  "common/comingSoon.json",
+  "common/common.json",
+  "common/configSetting.json",
+  "common/error.json",
+  "common/fullscreen.json",
+  "common/home.json",
+  "common/menu.json",
+  "common/navbar.json",
+  "common/routes.json",
+  "common/search.json",
+  "common/tabsBar.json",
+  "organization/branch.json",
+  "organization/company.json",
+  "organization/department.json",
+  "organization/part.json",
+  "organization/position.json"
+]

@@ -1,4 +1,8 @@
 <nz-card [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+  <ng-container *ngTemplateOutlet="formTpl"></ng-container>
+</nz-card>
+
+<ng-template #formTpl>
   <nz-spin [nzSpinning]="loading">
     <form nz-form [formGroup]="validateForm" nzLayout="vertical" (ngSubmit)="submitForm()">
       <div nz-row [nzGutter]="24">
@@ -6,7 +10,13 @@
           <nz-form-item>
             <nz-form-label [nzRequired]="true">Mã chi nhánh</nz-form-label>
             <nz-form-control nzErrorTip="Vui lòng nhập mã chi nhánh!">
-              <input nz-input formControlName="code" placeholder="Ví dụ: CN-HN" [disabled]="isEdit" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="code"
+                placeholder="Ví dụ: CN-HN"
+                [disabled]="isEdit"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -27,21 +37,36 @@
       <nz-form-item>
         <nz-form-label [nzRequired]="true">Tên chi nhánh</nz-form-label>
         <nz-form-control nzErrorTip="Vui lòng nhập tên chi nhánh!">
-          <input nz-input formControlName="name" placeholder="Ví dụ: Chi nhánh Hà Nội" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="name"
+            placeholder="Ví dụ: Chi nhánh Hà Nội"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label>Địa chỉ</nz-form-label>
         <nz-form-control>
-          <input nz-input formControlName="address" placeholder="Ví dụ: Số 12 Khuất Duy Tiến, Thanh Xuân, Hà Nội" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="address"
+            placeholder="Ví dụ: Số 12 Khuất Duy Tiến, Thanh Xuân, Hà Nội"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label>Dải IP chấm công</nz-form-label>
         <nz-form-control>
-          <input nz-input formControlName="ipAddress" placeholder="Ví dụ: 192.168.1.1; 14.226.15.22" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="ipAddress"
+            placeholder="Ví dụ: 192.168.1.1; 14.226.15.22"
+          />
         </nz-form-control>
       </nz-form-item>
 
@@ -50,7 +75,12 @@
           <nz-form-item>
             <nz-form-label>Tên viết tắt</nz-form-label>
             <nz-form-control>
-              <input nz-input formControlName="shortName" placeholder="Ví dụ: CN HN" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="shortName"
+                placeholder="Ví dụ: CN HN"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -58,7 +88,12 @@
           <nz-form-item>
             <nz-form-label>Loại chi nhánh</nz-form-label>
             <nz-form-control>
-              <input nz-input formControlName="type" placeholder="Ví dụ: Văn phòng / Showroom" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="type"
+                placeholder="Ví dụ: Văn phòng / Showroom"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -66,7 +101,12 @@
           <nz-form-item>
             <nz-form-label>Nhóm lương</nz-form-label>
             <nz-form-control>
-              <input nz-input formControlName="groupSalary" placeholder="Ví dụ: Nhom A / Nhom B" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="groupSalary"
+                placeholder="Ví dụ: Nhom A / Nhom B"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -75,31 +115,41 @@
       <nz-form-item>
         <nz-form-label>Mô tả chi nhánh</nz-form-label>
         <nz-form-control>
-          <textarea nz-input formControlName="description" rows="3" placeholder="Ghi chú chi nhánh..."></textarea>
+          <textarea
+            nzSize="large"
+            nz-input
+            formControlName="description"
+            rows="3"
+            placeholder="Ghi chú chi nhánh..."
+          ></textarea>
         </nz-form-control>
       </nz-form-item>
 
-      <div class="form-actions">
+      <div class="form-actions" style="margin-top: 24px">
         <button nz-button nzType="default" type="button" (click)="goBack()" [disabled]="submitting">
           <i nz-icon nzType="arrow-left"></i> Quay lại
         </button>
-        <button nz-button nzType="primary" type="submit" [nzLoading]="submitting" style="margin-left: 12px;">
+        <button
+          nz-button
+          nzType="primary"
+          type="submit"
+          [nzLoading]="submitting"
+          style="margin-left: 12px"
+        >
           <i nz-icon nzType="save"></i> Lưu thông tin
         </button>
       </div>
     </form>
   </nz-spin>
-</nz-card>
+</ng-template>
 
 <ng-template #titleTemplate>
-  <span style="font-size: 18px; font-weight: 600; color: var(--foreground);">
-    <i nz-icon nzType="apartment" style="margin-right: 8px; color: var(--primary);"></i>
+  <span style="font-size: 18px; font-weight: 600; color: var(--foreground)">
+    <i nz-icon nzType="apartment" style="margin-right: 8px; color: var(--primary)"></i>
     {{ isEdit ? 'Cập Nhật Chi Nhánh' : 'Thêm Chi Nhánh Mới' }}
   </span>
 </ng-template>
 
 <ng-template #extraTemplate>
-  <button nz-button nzType="default" (click)="goBack()">
-    Danh sách chi nhánh
-  </button>
+  <button nz-button nzType="default" (click)="goBack()">Danh sách chi nhánh</button>
 </ng-template>

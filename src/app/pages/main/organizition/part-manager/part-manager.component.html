@@ -1,0 +1,9 @@
+<nz-tabs [nzSelectedIndex]="activeTabKey === 'part' ? 0 : 1" (nzSelectedIndexChange)="onTabChange($event)" nzType="card" nzSize="large">
+  <nz-tab nzTitle="Bộ Phận">
+    <app-part></app-part>
+  </nz-tab>
+
+  <nz-tab nzTitle="Danh Mục Bộ Phận">
+    <app-part-master></app-part-master>
+  </nz-tab>
+</nz-tabs>

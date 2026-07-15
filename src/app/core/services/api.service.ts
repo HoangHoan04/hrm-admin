@@ -10,14 +10,13 @@ export class ApiService {
   constructor(
     private readonly http: HttpClient,
     private readonly endpoints: EndpointService
-  ) {}
+  ) { }
 
-  // Expose endpoints for convenience
   get AUTH() { return this.endpoints.AUTH; }
   get COMPANY() { return this.endpoints.COMPANY; }
   get BRANCH() { return this.endpoints.BRANCH; }
+  get ACTION_LOG() { return this.endpoints.ACTION_LOG; }
 
-  // Generic HTTP methods
   get<T>(url: string): Observable<T> {
     return this.http.get<T>(url);
   }

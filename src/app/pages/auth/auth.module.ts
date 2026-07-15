@@ -6,9 +6,11 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { SharedModule } from '../../shared/shared.module';
+import { LayoutWidgetsModule } from '../../layout/admin-layout/layout-widgets.module';
 import { AuthLayoutComponent } from '../../layout/auth-layout/auth-layout.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -19,15 +21,17 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ForgotPasswordComponent },
+      { path: 'change-password', component: ChangePasswordComponent },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [LoginComponent, ForgotPasswordComponent, AuthLayoutComponent],
+  declarations: [LoginComponent, ForgotPasswordComponent, AuthLayoutComponent, ChangePasswordComponent],
   imports: [
     FormsModule,
     SharedModule,
+    LayoutWidgetsModule,
     RouterModule,
     NzButtonModule,
     NzCheckboxModule,
@@ -36,4 +40,4 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
 })
-export class AuthModule {}
+export class AuthModule { }

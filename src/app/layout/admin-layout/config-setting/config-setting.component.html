@@ -22,8 +22,7 @@
           <nz-select
             [(ngModel)]="s.language"
             (ngModelChange)="update({ language: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             <nz-option nzValue="vi" nzLabel="Tiếng Việt"></nz-option>
             <nz-option nzValue="en" nzLabel="English"></nz-option>
@@ -60,6 +59,7 @@
               'configSetting.watermarkText' | translate
             }}</span>
             <input
+              nzSize="large"
               nz-input
               [(ngModel)]="s.watermarkText"
               (ngModelChange)="update({ watermarkText: $event })"
@@ -80,8 +80,7 @@
           <nz-select
             [(ngModel)]="s.theme"
             (ngModelChange)="update({ theme: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             <nz-option
               nzValue="light"
@@ -129,8 +128,7 @@
           <nz-select
             [(ngModel)]="s.fontFamily"
             (ngModelChange)="update({ fontFamily: $event })"
-            nzSize="small"
-            style="width: 140px"
+            style="width: 200px"
           >
             @for (f of fontFamilies; track $index) {
               <nz-option [nzValue]="f" [nzLabel]="f"></nz-option>
@@ -143,8 +141,7 @@
           <nz-select
             [(ngModel)]="s.fontWeight"
             (ngModelChange)="update({ fontWeight: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             <nz-option nzValue="light" nzLabel="Light"></nz-option>
             <nz-option nzValue="normal" nzLabel="Normal"></nz-option>
@@ -226,8 +223,7 @@
             <nz-select
               [(ngModel)]="s.navbarColorType"
               (ngModelChange)="update({ navbarColorType: $event })"
-              nzSize="small"
-              style="width: 110px"
+              style="width: 200px"
             >
               <nz-option
                 nzValue="solid"
@@ -277,8 +273,7 @@
             <nz-select
               [(ngModel)]="s.sidebarColorType"
               (ngModelChange)="update({ sidebarColorType: $event })"
-              nzSize="small"
-              style="width: 110px"
+              style="width: 200px"
             >
               <nz-option
                 nzValue="solid"
@@ -333,8 +328,7 @@
           <nz-select
             [(ngModel)]="s.layoutMode"
             (ngModelChange)="update({ layoutMode: $event })"
-            nzSize="small"
-            style="width: 160px"
+            style="width: 200px"
           >
             @for (m of layoutModes; track $index) {
               <nz-option [nzValue]="m" [nzLabel]="m | uppercase"></nz-option>
@@ -347,8 +341,7 @@
           <nz-select
             [(ngModel)]="s.sidebarPosition"
             (ngModelChange)="update({ sidebarPosition: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             <nz-option nzValue="left" nzLabel="Trái"></nz-option>
             <nz-option nzValue="right" nzLabel="Phải"></nz-option>
@@ -360,8 +353,7 @@
           <nz-select
             [(ngModel)]="s.configPosition"
             (ngModelChange)="update({ configPosition: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             <nz-option
               nzValue="left"
@@ -483,8 +475,7 @@
           <nz-select
             [(ngModel)]="s.tabStyle"
             (ngModelChange)="update({ tabStyle: $event })"
-            nzSize="small"
-            style="width: 120px"
+            style="width: 200px"
           >
             @for (t of tabStyles; track $index) {
               <nz-option [nzValue]="t" [nzLabel]="t | titlecase"></nz-option>
@@ -540,8 +531,7 @@
           <nz-select
             [(ngModel)]="s.transitionEffect"
             (ngModelChange)="update({ transitionEffect: $event })"
-            nzSize="small"
-            style="width: 140px"
+            style="width: 200px"
           >
             @for (e of transitionEffects; track $index) {
               <nz-option [nzValue]="e" [nzLabel]="e"></nz-option>
@@ -577,6 +567,7 @@
             'configSetting.companyName' | translate
           }}</span>
           <input
+            nzSize="large"
             nz-input
             [(ngModel)]="s.companyName"
             (ngModelChange)="update({ companyName: $event })"
@@ -589,6 +580,7 @@
             'configSetting.companyWebsite' | translate
           }}</span>
           <input
+            nzSize="large"
             nz-input
             [(ngModel)]="s.companyWebsite"
             (ngModelChange)="update({ companyWebsite: $event })"
@@ -601,6 +593,7 @@
             'configSetting.copyrightYear' | translate
           }}</span>
           <input
+            nzSize="large"
             nz-input
             [(ngModel)]="s.copyrightYear"
             (ngModelChange)="update({ copyrightYear: $event })"
@@ -613,6 +606,7 @@
             'configSetting.icpNumber' | translate
           }}</span>
           <input
+            nzSize="large"
             nz-input
             [(ngModel)]="s.icpNumber"
             (ngModelChange)="update({ icpNumber: $event })"
@@ -625,6 +619,7 @@
             'configSetting.icpLink' | translate
           }}</span>
           <input
+            nzSize="large"
             nz-input
             [(ngModel)]="s.icpLink"
             (ngModelChange)="update({ icpLink: $event })"
@@ -635,17 +630,17 @@
     </div>
 
     <div class="config-footer">
-      <button nz-button nzSize="small" (click)="reset()">
+      <button nz-button nzSize="large" (click)="reset()">
         <span nz-icon nzType="reload" nzTheme="outline"></span>
         {{ 'configSetting.reset' | translate }}
       </button>
-      <button nz-button nzSize="small" (click)="copyConfig()">
+      <button nz-button nzSize="large" (click)="copyConfig()">
         <span nz-icon nzType="copy" nzTheme="outline"></span>
         {{ 'configSetting.copyConfig' | translate }}
       </button>
       <button
         nz-button
-        nzSize="small"
+        nzSize="large"
         nzDanger
         (click)="clearCacheAndLogout()"
         class="config-logout-btn"

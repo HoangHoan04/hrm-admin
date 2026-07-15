@@ -1,0 +1,15 @@
+{
+  "comingSoon": {
+    "title": "Sắp ra mắt",
+    "desc": "Tính năng này đang được phát triển và sẽ sớm được ra mắt.",
+    "days": "Ngày",
+    "hours": "Giờ",
+    "minutes": "Phút",
+    "seconds": "Giây",
+    "notify": "Thông báo cho tôi",
+    "emailPlaceholder": "Nhập email của bạn...",
+    "emailSubmit": "Đăng ký",
+    "launching": "Sẽ ra mắt vào",
+    "subscribed": "Đã đăng ký nhận thông báo thành công!"
+  }
+}

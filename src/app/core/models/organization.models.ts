@@ -1,7 +1,3 @@
-/**
- * Models cho module Tổ chức: Công ty & Chi nhánh.
- * Các DTO dùng riêng cho module này được khai báo tại đây.
- */
 import { SelectBoxDto } from './common.models';
 
 export interface Company {
@@ -32,10 +28,8 @@ export interface Branch {
   createdAt?: string;
 }
 
-/** SelectBox dùng cho dropdown chọn công ty */
 export type CompanySelectBoxDto = SelectBoxDto;
 
-/** SelectBox dùng cho dropdown chọn chi nhánh */
 export interface BranchSelectBoxDto extends SelectBoxDto {
   companyId?: string;
 }

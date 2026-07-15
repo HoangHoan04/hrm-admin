@@ -1,0 +1,94 @@
+<nz-card
+  [nzTitle]="isEdit ? 'Cập Nhật Bộ Phận' : 'Thêm Mới Bộ Phận'"
+  [nzExtra]="extraTemplate"
+  [nzLoading]="loading"
+>
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="code">Mã bộ phận</nz-form-label>
+          <nz-form-control nzErrorTip="Vui lòng nhập mã bộ phận!">
+            <input
+              nzSize="large"
+              nz-input
+              formControlName="code"
+              id="code"
+              placeholder="Ví dụ: P-WEB-01"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="name">Tên bộ phận</nz-form-label>
+          <nz-form-control nzErrorTip="Vui lòng nhập tên bộ phận!">
+            <input
+              nzSize="large"
+              nz-input
+              formControlName="name"
+              id="name"
+              placeholder="Ví dụ: Nhóm Frontend Angular"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="departmentName">Phòng ban trực thuộc</nz-form-label>
+          <nz-form-control nzErrorTip="Vui lòng chọn phòng ban!">
+            <nz-select formControlName="departmentName" placeholder="Chọn phòng ban">
+              <nz-option
+                nzValue="Phòng Kỹ thuật Hà Nội"
+                nzLabel="Phòng Kỹ thuật Hà Nội"
+              ></nz-option>
+              <nz-option
+                nzValue="Phòng Hành chính Nhân sự"
+                nzLabel="Phòng Hành chính Nhân sự"
+              ></nz-option>
+              <nz-option nzValue="Phòng Marketing" nzLabel="Phòng Marketing"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label nzFor="description">Mô tả / Ghi chú</nz-form-label>
+          <nz-form-control>
+            <textarea
+              nzSize="large"
+              nz-input
+              formControlName="description"
+              id="description"
+              [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+              placeholder="Nhập mô tả bộ phận..."
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div
+      style="
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+        margin-top: 16px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      "
+    >
+      <button nz-button nzType="default" type="button" (click)="goBack()">Hủy</button>
+      <button nz-button nzType="primary" [nzLoading]="submitting" type="submit">Lưu Lại</button>
+    </div>
+  </form>
+</nz-card>
+
+<ng-template #extraTemplate>
+  <button nz-button nzType="default" (click)="goBack()">
+    <i nz-icon nzType="arrow-left"></i> Quay Lại
+  </button>
+</ng-template>

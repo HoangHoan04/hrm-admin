@@ -41,6 +41,7 @@ h6,
 }
 
 app-sidebar {
+
   .ant-menu-item,
   .ant-menu-submenu-title {
     display: flex !important;
@@ -150,6 +151,7 @@ html[data-sidebar-position='right'] .admin-layout {
   height: 100vh;
   display: flex !important;
   flex-direction: row !important;
+  background-color: var(--background) !important;
 }
 
 .admin-layout>.admin-right {
@@ -158,6 +160,7 @@ html[data-sidebar-position='right'] .admin-layout {
   overflow: hidden;
   flex: 1;
   min-width: 0;
+  background-color: var(--background) !important;
 }
 
 app-sidebar {
@@ -225,7 +228,9 @@ app-sidebar .ant-layout-sider {
 
 .admin-layout .admin-sidebar .sidebar-brand-wrap {
   overflow: hidden;
-  transition: width 0.2s ease, opacity 0.2s ease;
+  transition:
+    width 0.2s ease,
+    opacity 0.2s ease;
   width: 100px;
   opacity: 1;
 }
@@ -392,7 +397,6 @@ html.dark .watermark-tile {
   color: rgba(255, 255, 255, 0.04);
 }
 
-/* ─── Dark mode: force NG‑ZORRO text colors ─── */
 html.dark .ant-breadcrumb a,
 html.dark .ant-breadcrumb span:not(.breadcrumb-last) {
   color: var(--foreground, #e2e8f0) !important;
@@ -424,7 +428,6 @@ html.dark app-sidebar .ant-menu-item-group-title {
   color: var(--muted-foreground, #94a3b8) !important;
 }
 
-/* sidebar brand text */
 html.dark .sidebar-brand {
   color: var(--muted-foreground, #94a3b8) !important;
 }
@@ -439,7 +442,6 @@ html[data-sidebar-position] .admin-layout {
   font-family: var(--font-family, Inter), sans-serif;
 }
 
-/* ─── TabsBar ─── */
 .tabs-bar {
   display: flex;
   align-items: center;
@@ -618,7 +620,6 @@ html[data-sidebar-position] .admin-layout {
   color: var(--foreground, #1f2937);
 }
 
-/* Tabs Actions */
 .tabs-actions {
   display: flex;
   align-items: center;
@@ -666,7 +667,6 @@ html[data-sidebar-position] .admin-layout {
   font-weight: 700;
 }
 
-/* Context Menu */
 .context-menu {
   position: fixed;
   z-index: 9999;
@@ -718,17 +718,20 @@ html.dark .tab-item.tab-card.tab-active {
   border-color: var(--primary, #3b82f6);
 }
 
-/* ─── Drawer and Ant Design components theme styling ─── */
 .ant-drawer-content {
   background-color: var(--background-card) !important;
   color: var(--foreground) !important;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .ant-drawer-header {
   background-color: var(--background-card) !important;
   border-bottom: 1px solid var(--border) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-drawer-title {
@@ -746,20 +749,25 @@ html.dark .tab-item.tab-card.tab-active {
   transition: border-color 0.25s ease;
 }
 
-/* Inputs, Selects, Buttons */
 .config-input,
 .ant-input {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
   border-color: var(--border) !important;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
   border-color: var(--border) !important;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-select-arrow {
@@ -767,11 +775,12 @@ html.dark .tab-item.tab-card.tab-active {
   transition: color 0.25s ease;
 }
 
-/* Dropdowns */
 .ant-select-dropdown {
   background-color: var(--background-card) !important;
   border: 1px solid var(--border) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-select-item {
@@ -788,7 +797,6 @@ html.dark .tab-item.tab-card.tab-active {
   background-color: var(--muted) !important;
 }
 
-/* Switch & Slider */
 .ant-switch-checked {
   background-color: var(--primary) !important;
 }
@@ -806,12 +814,14 @@ html.dark .tab-item.tab-card.tab-active {
   background-color: var(--background-card) !important;
 }
 
-/* Buttons */
 .ant-btn {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
   border-color: var(--border) !important;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-btn-danger {
@@ -824,19 +834,23 @@ html.dark .tab-item.tab-card.tab-active {
   background-color: rgba(255, 77, 79, 0.1) !important;
 }
 
-/* ─── Global Ant Design Components theme synchronization ─── */
 .ant-card {
   background-color: var(--background-card) !important;
   color: var(--foreground) !important;
   border-color: var(--border) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-card-head {
   background-color: var(--background-card) !important;
   border-bottom: 1px solid var(--border) !important;
   color: var(--foreground) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .ant-card-head-title {
@@ -847,14 +861,19 @@ html.dark .tab-item.tab-card.tab-active {
 .ant-modal-content {
   background-color: var(--background-card) !important;
   color: var(--foreground) !important;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .ant-modal-header {
   background-color: var(--background-card) !important;
   border-bottom: 1px solid var(--border) !important;
   color: var(--foreground) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .ant-modal-title {
@@ -870,7 +889,9 @@ html.dark .tab-item.tab-card.tab-active {
 .ant-modal-footer {
   background-color: var(--background-card) !important;
   border-top: 1px solid var(--border) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .ant-form-item-label>label {
@@ -878,12 +899,261 @@ html.dark .tab-item.tab-card.tab-active {
   transition: color 0.25s ease;
 }
 
-/* ─── Maximize layout mode ─── */
 html.s-maximized {
 
   app-sidebar,
   app-navbar,
   .admin-footer {
     display: none !important;
+  }
+}
+
+
+body,
+.admin-layout,
+.admin-sidebar,
+.admin-content,
+.ant-menu,
+.ant-btn {
+  font-family: var(--font-family, 'Inter'), sans-serif !important;
+}
+
+html[data-layout='boxed'] {
+  body {
+    background: #f1f5f9;
+  }
+
+  .admin-layout {
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+}
+
+html[data-layout='detached'] {
+  .admin-content {
+    padding: 24px;
+    background: transparent;
+  }
+
+  router-outlet+* {
+    display: block;
+    background: var(--background-card);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border);
+  }
+}
+
+html[data-layout='without header'] {
+  app-navbar {
+    display: none !important;
+  }
+}
+
+.page-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(59, 130, 246, 0.1);
+  z-index: 10000;
+  overflow: hidden;
+
+  .page-progress-bar-value {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary, #3b82f6);
+    animation: progress-indeterminate 1.5s infinite linear;
+    transform-origin: 0% 50%;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%) scaleX(1);
+  }
+
+  50% {
+    transform: translateX(-40%) scaleX(0.4);
+  }
+
+  100% {
+    transform: translateX(100%) scaleX(1);
+  }
+}
+
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  .page-loader-spinner-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .page-loader-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+}
+
+html.dark .page-loader-overlay {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.admin-content.page-transition-active {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    filter 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &[data-transition-state='exit'] {
+    opacity: 0;
+    pointer-events: none;
+
+    &[data-effect='fade'] {
+      transform: scale(1);
+    }
+
+    &[data-effect='fade-up'] {
+      transform: translateY(20px);
+    }
+
+    &[data-effect='fade-down'] {
+      transform: translateY(-20px);
+    }
+
+    &[data-effect='fade-side'] {
+      transform: translateX(30px);
+    }
+
+    &[data-effect='fade-zoom'] {
+      transform: scale(0.95);
+    }
+
+    &[data-effect='slide-left'] {
+      transform: translateX(-100%);
+    }
+
+    &[data-effect='slide-right'] {
+      transform: translateX(100%);
+    }
+
+    &[data-effect='zoom-in'] {
+      transform: scale(0.8);
+    }
+
+    &[data-effect='zoom-out'] {
+      transform: scale(1.2);
+    }
+
+    &[data-effect='rotate'] {
+      transform: rotate(-5deg) scale(0.95);
+    }
+
+    &[data-effect='flip-x'] {
+      transform: rotateX(90deg);
+    }
+
+    &[data-effect='flip-y'] {
+      transform: rotateY(90deg);
+    }
+
+    &[data-effect='bounce'] {
+      transform: scale(0.9) translateY(40px);
+    }
+
+    &[data-effect='slide-up'] {
+      transform: translateY(100%);
+    }
+
+    &[data-effect='slide-down'] {
+      transform: translateY(-100%);
+    }
+  }
+
+  &[data-transition-state='enter'] {
+    opacity: 0;
+
+    &[data-effect='fade'] {
+      transform: scale(1);
+      opacity: 0;
+    }
+
+    &[data-effect='fade-up'] {
+      transform: translateY(-20px);
+    }
+
+    &[data-effect='fade-down'] {
+      transform: translateY(20px);
+    }
+
+    &[data-effect='fade-side'] {
+      transform: translateX(-30px);
+    }
+
+    &[data-effect='fade-zoom'] {
+      transform: scale(1.05);
+    }
+
+    &[data-effect='slide-left'] {
+      transform: translateX(100%);
+    }
+
+    &[data-effect='slide-right'] {
+      transform: translateX(-100%);
+    }
+
+    &[data-effect='zoom-in'] {
+      transform: scale(1.2);
+    }
+
+    &[data-effect='zoom-out'] {
+      transform: scale(0.8);
+    }
+
+    &[data-effect='rotate'] {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    &[data-effect='flip-x'] {
+      transform: rotateX(-90deg);
+    }
+
+    &[data-effect='flip-y'] {
+      transform: rotateY(-90deg);
+    }
+
+    &[data-effect='bounce'] {
+      transform: scale(1.1) translateY(-20px);
+    }
+
+    &[data-effect='slide-up'] {
+      transform: translateY(-100%);
+    }
+
+    &[data-effect='slide-down'] {
+      transform: translateY(100%);
+    }
+  }
+
+  &[data-transition-state='ready'] {
+    opacity: 1;
+    transform: none;
   }
 }

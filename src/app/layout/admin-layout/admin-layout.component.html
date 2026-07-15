@@ -1,9 +1,31 @@
-<nz-layout class="admin-layout">
+<nz-layout class="admin-layout" [style.--font-family]="s.fontFamily">
+  <!-- Page progress bar -->
+  @if (s.pageProgress && isNavigating) {
+    <div class="page-progress-bar">
+      <div class="page-progress-bar-value"></div>
+    </div>
+  }
+
+  <!-- Full page loader overlay -->
+  @if (s.pageLoader && isNavigating) {
+    <div class="page-loader-overlay">
+      <div class="page-loader-spinner-wrap">
+        <nz-spin nzSimple nzSize="large"></nz-spin>
+        <span class="page-loader-text">Đang tải trang...</span>
+      </div>
+    </div>
+  }
+
   <app-sidebar></app-sidebar>
   <nz-layout class="admin-right">
     <app-navbar></app-navbar>
     <app-tabs-bar></app-tabs-bar>
-    <nz-content class="admin-content">
+    <nz-content 
+      class="admin-content" 
+      [class.page-transition-active]="s.pageTransition" 
+      [attr.data-effect]="s.transitionEffect"
+      [attr.data-transition-state]="currentTransitionState"
+    >
       <router-outlet></router-outlet>
       @if (s.watermark) {
         <div class="watermark-overlay">
@@ -17,3 +39,4 @@
   </nz-layout>
 </nz-layout>
 <app-config-setting></app-config-setting>
+

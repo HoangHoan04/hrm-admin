@@ -1,0 +1,15 @@
+{
+  "comingSoon": {
+    "title": "Feature Coming Soon",
+    "desc": "We're working hard to bring you this feature. Check back soon!",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "notify": "Notify Me",
+    "emailPlaceholder": "Enter your email...",
+    "emailSubmit": "Subscribe",
+    "launching": "Launching on",
+    "subscribed": "Successfully subscribed for notifications!"
+  }
+}

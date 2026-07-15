@@ -14,11 +14,21 @@ export class LoginComponent {
   showPassword = false;
   loading = false;
   error = '';
+  isModalVisible = false;
+  rememberMe = false;
 
   constructor(
     private router: Router,
     private auth: AuthService,
   ) {}
+
+  openContactModal(): void {
+    this.isModalVisible = true;
+  }
+
+  closeContactModal(): void {
+    this.isModalVisible = false;
+  }
 
   onLogin(): void {
     this.error = '';
@@ -27,13 +37,20 @@ export class LoginComponent {
       return;
     }
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      if (this.auth.login(this.username, this.password)) {
-        this.router.navigateByUrl('/');
-      } else {
-        this.error = 'Tài khoản hoặc mật khẩu không đúng';
-      }
-    }, 500);
+    this.auth.login(this.username, this.password).subscribe({
+      next: (res) => {
+        this.loading = false;
+        if (res && res.mustChangePassword) {
+          this.router.navigateByUrl('/auth/change-password');
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error =
+          typeof err.error === 'string' ? err.error : 'Tài khoản hoặc mật khẩu không đúng';
+      },
+    });
   }
 }

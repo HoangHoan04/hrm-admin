@@ -1,73 +1,150 @@
 <div class="login-welcome">
-  <h1 class="login-title">Xin chào!</h1>
-  <p class="login-subtitle">Đăng nhập để tiếp tục quản lý hệ thống</p>
+  <h1 class="login-title">{{ 'auth.signInTitle' | translate }}</h1>
+  <p class="login-subtitle">{{ 'auth.signInSubtitle' | translate }}</p>
 </div>
 
 <form (ngSubmit)="onLogin()" class="login-form" #loginForm="ngForm">
   @if (error) {
-    <div class="login-alert">
-      <span nz-icon nzType="warning" nzTheme="fill"></span>
-      <span>{{ error }}</span>
-    </div>
+  <div class="login-alert">
+    <span nz-icon nzType="warning" nzTheme="fill"></span>
+    <span>{{ error }}</span>
+  </div>
   }
 
   <div class="login-field">
-    <label class="login-label" for="username">Email</label>
-    <nz-input-wrapper class="login-input-wrap">
-      <span nzInputPrefix>
-        <span nz-icon nzType="mail" nzTheme="outline"></span>
-      </span>
-      <input
-        id="username"
-        nz-input
-        [(ngModel)]="username"
-        name="username"
-        type="email"
-        placeholder="Nhập email của bạn"
-        autocomplete="email"
-        required
-      />
-    </nz-input-wrapper>
+    <label class="login-label" for="username">{{ 'auth.emailAddress' | translate }}</label>
+    <nz-input-group nzSize="large" [nzPrefix]="prefixMail" class="login-input-wrap">
+      <input nzSize="large" id="username" nz-input [(ngModel)]="username" name="username" type="email"
+        [placeholder]="'auth.emailPlaceholder' | translate" autocomplete="email" required />
+    </nz-input-group>
+    <ng-template #prefixMail>
+      <span nz-icon nzType="mail" nzTheme="outline"></span>
+    </ng-template>
   </div>
 
   <div class="login-field">
-    <label class="login-label" for="password">Mật khẩu</label>
-    <nz-input-wrapper class="login-input-wrap">
-      <span nzInputPrefix>
-        <span nz-icon nzType="lock" nzTheme="outline"></span>
-      </span>
-      <input
-        id="password"
-        nz-input
-        [type]="showPassword ? 'text' : 'password'"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Nhập mật khẩu"
-        autocomplete="current-password"
-        required
-      />
-      <span nzInputSuffix>
-        <button type="button" class="login-eye" (click)="showPassword = !showPassword" tabindex="-1">
-          <span nz-icon [nzType]="showPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
-        </button>
-      </span>
-    </nz-input-wrapper>
+    <label class="login-label" for="password">{{ 'auth.password' | translate }}</label>
+    <nz-input-group nzSize="large" [nzPrefix]="prefixLock" [nzSuffix]="suffixPw" class="login-input-wrap">
+      <input nzSize="large" id="password" nz-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password"
+        [placeholder]="'auth.passwordPlaceholder' | translate" autocomplete="current-password" required />
+    </nz-input-group>
+    <ng-template #prefixLock>
+      <span nz-icon nzType="lock" nzTheme="outline"></span>
+    </ng-template>
+    <ng-template #suffixPw>
+      <button type="button" class="login-eye" (click)="showPassword = !showPassword" tabindex="-1">
+        <span nz-icon [nzType]="showPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+      </button>
+    </ng-template>
   </div>
 
   <div class="login-options">
-    <label class="login-remember" (click)="$event.stopPropagation()">
+    <label class="login-remember" [class.checked]="rememberMe" (click)="rememberMe = !rememberMe">
       <span class="login-checkbox">
         <span nz-icon nzType="check" nzTheme="outline"></span>
       </span>
-      <span>Ghi nhớ đăng nhập</span>
+      <span>{{ 'auth.rememberMe' | translate }}</span>
     </label>
-    <a routerLink="/auth/forgot-password" class="login-forgot">Quên mật khẩu?</a>
+    <a routerLink="/auth/forgot-password" class="login-forgot">{{
+      'auth.forgotPassword' | translate
+      }}</a>
   </div>
 
   <button nz-button nzType="primary" nzBlock [nzLoading]="loading" class="login-btn">
     @if (!loading) {
-      <span nz-icon nzType="login" nzTheme="outline"></span>
+    <span nz-icon nzType="login" nzTheme="outline"></span>
     }
-    <span>Đăng nhập</span>
+    <span>{{ 'auth.signIn' | translate }}</span>
   </button>
+
+  <div class="login-footer-text">
+    {{ 'auth.dontHaveAccount' | translate }}
+    <a (click)="openContactModal()" class="create-account-link">{{
+      'auth.createAccount' | translate
+      }}</a>
+  </div>
 </form>
+
+<nz-modal [(nzVisible)]="isModalVisible" [nzTitle]="modalTitleTpl" (nzOnCancel)="closeContactModal()"
+  [nzFooter]="modalFooter" nzWidth="520px" [nzCentered]="true" class="hr-contact-modal">
+  <ng-template #modalTitleTpl>
+    <div class="modal-custom-header">
+      <div class="header-icon-wrap">
+        <span nz-icon nzType="phone" nzTheme="outline"></span>
+      </div>
+      <div class="header-text-wrap">
+        <h3>{{ 'auth.modalTitle' | translate }}</h3>
+        <p>{{ 'auth.modalSubtitle' | translate }}</p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-container *nzModalContent>
+    <p class="modal-intro-text">
+      {{ 'auth.modalBody' | translate }}
+    </p>
+
+    <div class="hr-list-container">
+      <div class="hr-member-card">
+        <div class="hr-avatar-col">
+          <div class="hr-avatar-mock">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+          </div>
+        </div>
+
+        <div class="hr-info-col">
+          <h4 class="hr-name">Nguyễn Văn A</h4>
+          <span class="hr-badge">{{ 'auth.modalDeptVal' | translate }}</span>
+
+          <div class="hr-meta-list">
+            <div class="meta-item">
+              <span nz-icon nzType="mail" nzTheme="outline" class="meta-icon"></span>
+              <a href="mailto:a.nguyen@smarthr.vn" class="meta-link">a.nguyen@smarthr.vn</a>
+            </div>
+            <div class="meta-item">
+              <span nz-icon nzType="phone" nzTheme="outline" class="meta-icon"></span>
+              <span class="meta-text">(028) 1234 5678 <small class="text-muted">(Ext: 101)</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hr-member-card">
+        <div class="hr-avatar-col">
+          <div class="hr-avatar-mock">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+          </div>
+        </div>
+
+        <div class="hr-info-col">
+          <h4 class="hr-name">Trần Thị B</h4>
+          <span class="hr-badge">{{ 'auth.modalDeptVal' | translate }}</span>
+
+          <div class="hr-meta-list">
+            <div class="meta-item">
+              <span nz-icon nzType="mail" nzTheme="outline" class="meta-icon"></span>
+              <a href="mailto:b.tran@smarthr.vn" class="meta-link">b.tran@smarthr.vn</a>
+            </div>
+            <div class="meta-item">
+              <span nz-icon nzType="phone" nzTheme="outline" class="meta-icon"></span>
+              <span class="meta-text">(028) 1234 5678 <small class="text-muted">(Ext: 102)</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr-working-hours">
+      <span nz-icon nzType="clock-circle" nzTheme="outline" class="hours-icon"></span>
+      <span class="hours-text">
+        <strong>{{ 'auth.modalHours' | translate }}:</strong> {{ 'auth.modalHoursVal' | translate }}
+      </span>
+    </div>
+  </ng-container>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" (click)="closeContactModal()" class="modal-close-btn">
+      {{ 'auth.modalClose' | translate }}
+    </button>
+  </ng-template>
+</nz-modal>

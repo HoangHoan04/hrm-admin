@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "position": {
+      "title": "Quản lý chức vụ",
+      "code": "Mã chức vụ",
+      "name": "Tên chức vụ",
+      "departmentName": "Bộ phận/Phòng ban",
+      "status": "Trạng thái",
+      "createdAt": "Ngày tạo",
+      "description": "Mô tả vai trò"
+    }
+  }
+}

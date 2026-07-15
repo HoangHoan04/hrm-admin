@@ -1,0 +1,16 @@
+{
+  "menu": {
+    "home": "Trang chủ",
+    "dashboard": "Bảng điều khiển",
+    "analytics": "Phân tích số liệu",
+    "users": "Quản lý thành viên",
+    "settings": "Cấu hình hệ thống",
+    "roles": "Phân quyền",
+    "logs": "Nhật ký hệ thống",
+    "humanResource": "Nhân sự",
+    "employeeList": "Danh sách nhân viên",
+    "roleList": "Danh sách vai trò",
+    "auditLog": "Nhật ký hoạt động",
+    "systemConfig": "Cài đặt hệ thống"
+  }
+}

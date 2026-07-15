@@ -1,4 +1,4 @@
-<nz-card [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+<nz-card [nzTitle]="titleTemplate">
   <app-table-custom
     [id]="'branch-table'"
     [data]="data"
@@ -7,6 +7,7 @@
     [showIndexList]="true"
     [stripedRows]="true"
     [rowActions]="rowActions"
+    [toolbarActions]="toolbarActions"
     [pagination]="pagination"
     (pageChange)="onPageChange($event)"
     (sortChange)="onSortChange($event)"
@@ -19,10 +20,4 @@
     <i nz-icon nzType="apartment" style="margin-right: 8px; color: var(--primary);"></i>
     Quản Lý Chi Nhánh
   </span>
-</ng-template>
-
-<ng-template #extraTemplate>
-  <button nz-button nzType="primary" (click)="openCreateModal()">
-    <i nz-icon nzType="plus"></i> Thêm Chi Nhánh
-  </button>
 </ng-template>

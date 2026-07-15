@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
-import { TableColumn, RowAction, PaginationConfig, ToolbarConfig, FilterMeta } from './table-custom.types';
+import { TableColumn, RowAction, PaginationConfig, ToolbarConfig, FilterMeta, TableAction } from './table-custom.types';
 
 @Component({
   selector: 'app-table-custom',
@@ -24,21 +24,36 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rowActionsStyle?: Record<string, any>;
   @Input() rowActionsFrozen: boolean = true;
   @Input() toolbar?: ToolbarConfig;
+  @Input() toolbarActions: TableAction[] = [];
   @Input() stripedRows: boolean = false;
   @Input() showGridlines: boolean = true;
   @Input() size: 'small' | 'normal' | 'large' = 'normal';
   @Input() sortField?: string;
   @Input() sortOrder?: 1 | -1 | 0 | null;
-
-  // Custom toolbar templates passed from parent
   @Input() toolbarLeftContent?: TemplateRef<any>;
   @Input() toolbarRightContent?: TemplateRef<any>;
-
   @Output() pageChange = new EventEmitter<{ page: number; pageSize: number }>();
   @Output() selectionChange = new EventEmitter<any[]>();
   @Output() sortChange = new EventEmitter<{ sortField: string | null; sortOrder: 1 | -1 | 0 | null }>();
   @Output() refresh = new EventEmitter<void>();
   @Output() rowClick = new EventEmitter<any>();
+
+  handleActionClick(act: TableAction, parent?: TableAction): void {
+    if (act.key === 'upload-file' && parent?.onFileSelect) {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = parent.acceptFiles || '.xlsx,.xls,.csv';
+      input.onchange = (e: any) => {
+        const file = e.target.files?.[0];
+        if (file && parent.onFileSelect) {
+          parent.onFileSelect(file);
+        }
+      };
+      input.click();
+    } else if (act.onClick) {
+      act.onClick();
+    }
+  }
 
   pageSizeOptions = [10, 20, 50, 100];
   density: 'small' | 'normal' | 'large' = 'normal';
@@ -80,7 +95,7 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     if (savedOrder) {
       try {
         this.columnOrder = JSON.parse(savedOrder);
-      } catch (e) {}
+      } catch (e) { }
     } else {
       this.columnOrder = this.columns.map(c => c.field);
     }
@@ -89,7 +104,7 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     if (savedVisibility) {
       try {
         this.visibleColumnsMap = JSON.parse(savedVisibility);
-      } catch (e) {}
+      } catch (e) { }
     }
 
     this.columns.forEach(col => {
@@ -138,7 +153,6 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     this.density = d;
   }
 
-  // Drag and drop column order
   onDragStart(e: DragEvent, field: string): void {
     this.draggedField = field;
     if (e.dataTransfer) {
@@ -167,7 +181,6 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     this.draggedField = null;
   }
 
-  // Resize column width
   onResizeStart(e: MouseEvent, field: string, initialWidth: number): void {
     e.preventDefault();
     e.stopPropagation();
@@ -213,7 +226,6 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     return offset;
   }
 
-  // Checkbox/Selection functions
   isAllSelected(): boolean {
     return this.data.length > 0 && this.selectedRows.length === this.data.length;
   }
@@ -244,7 +256,6 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     this.selectionChange.emit(this.selectedRows);
   }
 
-  // Sorting
   onSortClick(field: string, sortable?: boolean): void {
     if (!sortable) return;
     let nextOrder: 1 | -1 | 0 = 1;
@@ -260,28 +271,26 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  // Page changes
   onPageChangeClick(page: number): void {
     if (!this.pagination) return;
+    if (this.pagination.current === page) return;
     this.pageChange.emit({ page, pageSize: this.pagination.pageSize });
   }
 
   onPageSizeChange(size: number): void {
     if (!this.pagination) return;
+    if (this.pagination.pageSize === size) return;
     this.pageChange.emit({ page: 1, pageSize: size });
   }
 
-  // Toolbar Refresh
   onRefreshClick(): void {
     this.refresh.emit();
   }
 
-  // Row Click
   onRowClickEmit(rowData: any): void {
     this.rowClick.emit(rowData);
   }
 
-  // Formatting helpers
   getBadgeSeverityClass(severity: string): string {
     switch (severity) {
       case 'success':
@@ -300,29 +309,28 @@ export class TableCustomComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  // Row Action checks
   isActionVisible(action: RowAction, rowData: any): boolean {
     return action.visible === undefined
       ? true
       : typeof action.visible === 'function'
-      ? action.visible(rowData)
-      : action.visible;
+        ? action.visible(rowData)
+        : action.visible;
   }
 
   isActionDisabled(action: RowAction, rowData: any): boolean {
     return action.disabled === undefined
       ? false
       : typeof action.disabled === 'function'
-      ? action.disabled(rowData)
-      : action.disabled;
+        ? action.disabled(rowData)
+        : action.disabled;
   }
 
   isActionLoading(action: RowAction, rowData: any): boolean {
     return action.loading === undefined
       ? false
       : typeof action.loading === 'function'
-      ? action.loading(rowData)
-      : action.loading;
+        ? action.loading(rowData)
+        : action.loading;
   }
 
   getActionSeverityClass(action: RowAction): string {

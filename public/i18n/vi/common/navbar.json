@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "toggleSidebar": "Thu gọn/Mở rộng Sidebar",
+    "quickSearch": "Tìm kiếm nhanh...",
+    "openSettings": "Mở cài đặt",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "changeTheme": "Đổi giao diện"
+  }
+}

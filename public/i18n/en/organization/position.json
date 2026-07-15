@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "position": {
+      "title": "Position Management",
+      "code": "Position Code",
+      "name": "Position Name",
+      "departmentName": "Department/Part",
+      "status": "Status",
+      "createdAt": "Created Date",
+      "description": "Role Description"
+    }
+  }
+}

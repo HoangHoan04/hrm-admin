@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   standalone: false,
@@ -22,7 +23,10 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   otpTimer = 60;
   private otpInterval: ReturnType<typeof setInterval> | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     const path = this.router.url.split('?')[0];
@@ -55,9 +59,19 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
       this.error = 'Vui lòng nhập email của bạn';
       return;
     }
-    this.step = 2;
-    setTimeout(() => this.focusBox(0), 0);
-    this.startTimer();
+    this.loading = true;
+    this.authService.forgotPassword(this.email).subscribe({
+      next: () => {
+        this.loading = false;
+        this.step = 2;
+        setTimeout(() => this.focusBox(0), 0);
+        this.startTimer();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = typeof err.error === 'string' ? err.error : (err.error?.message || 'Có lỗi xảy ra khi gửi yêu cầu.');
+      }
+    });
   }
 
   onOtpInput(index: number, event: Event): void {
@@ -107,8 +121,18 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   resendOtp(): void {
     this.otp = ['', '', '', '', '', ''];
     this.otpTimer = 60;
-    this.startTimer();
-    setTimeout(() => this.focusBox(0), 0);
+    this.loading = true;
+    this.authService.forgotPassword(this.email).subscribe({
+      next: () => {
+        this.loading = false;
+        this.startTimer();
+        setTimeout(() => this.focusBox(0), 0);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = typeof err.error === 'string' ? err.error : 'Không thể gửi lại mã OTP.';
+      }
+    });
   }
 
   onResetPassword(): void {
@@ -122,10 +146,20 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
       return;
     }
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.router.navigateByUrl('/auth/login');
-    }, 800);
+    this.authService.resetPasswordWithOtp({
+      email: this.email,
+      otp: this.otpValue,
+      newPassword: this.newPassword
+    }).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigateByUrl('/auth/login');
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = typeof err.error === 'string' ? err.error : (err.error?.message || 'Đặt lại mật khẩu thất bại.');
+      }
+    });
   }
 
   goBack(): void {

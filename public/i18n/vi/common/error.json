@@ -1,0 +1,22 @@
+{
+  "error": {
+    "404Title": "Không tìm thấy trang",
+    "404Desc": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.",
+    "500Title": "Lỗi máy chủ",
+    "500Desc": "Máy chủ đang gặp sự cố. Vui lòng thử lại sau.",
+    "goHome": "Quay về Trang chủ",
+    "goBack": "Quay lại trang trước",
+    "tryAgain": "Thử lại",
+    "retrying": "Đang thử lại...",
+    "reportIssue": "Báo cáo sự cố",
+    "help": "Nếu tình trạng này còn tiếp diễn, hãy liên hệ đội hỗ trợ hoặc thử lại sau.",
+    "online": "Đang trực tuyến",
+    "offline": "Mất kết nối mạng",
+    "occurredAt": "Xảy ra lúc",
+    "agoSuffix": "trước",
+    "autoRetryOn": "Tự động thử lại sau {{s}}s",
+    "cancelAutoRetry": "Huỷ tự động thử lại",
+    "copyDetails": "Sao chép log lỗi",
+    "copied": "Đã sao chép"
+  }
+}

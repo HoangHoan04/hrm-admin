@@ -1,0 +1,9 @@
+{
+  "home": {
+    "welcome": "Home",
+    "desc": "Welcome to the HOANG HOAN TECHNOLOGY management system.",
+    "cardTitle": "Management System",
+    "cardDesc": "Main home page of the service management system.",
+    "cardHelp": "Please use the left sidebar menu to access other management features such as Dashboard, Analytics, Users, or System Settings."
+  }
+}

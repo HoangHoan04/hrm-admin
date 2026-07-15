@@ -1,37 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ROUTES_CONFIG } from '../../core/constants/routes.config';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { BranchManagerComponent } from './organizition/branch-manager/branch-manager.component';
-import { AddOrUpdateBranchComponent } from './organizition/branch-manager/add-or-update-branch/add-or-update-branch.component';
-import { CompanyManagerComponent } from './organizition/company-manager/company-manager.component';
-import { AddOrUpdateCompanyComponent } from './organizition/company-manager/add-or-update-company/add-or-update-company.component';
+
+const getPath = (p: string) => (p.startsWith('/') ? p.substring(1) : p);
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  
-  // Routes quản lý công ty
-  { path: 'organization/company', component: CompanyManagerComponent },
-  { path: 'organization/company/add', component: AddOrUpdateCompanyComponent },
-  { path: 'organization/company/edit/:id', component: AddOrUpdateCompanyComponent },
 
-  // Routes quản lý chi nhánh
-  { path: 'organization/branch', component: BranchManagerComponent },
-  { path: 'organization/branch/add', component: AddOrUpdateBranchComponent },
-  { path: 'organization/branch/edit/:id', component: AddOrUpdateBranchComponent },
+  {
+    path: getPath(ROUTES_CONFIG.ORGANIZATION.path),
+    loadChildren: () =>
+      import('./organizition/organization.module').then((m) => m.OrganizationModule),
+  },
 ];
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    BranchManagerComponent,
-    AddOrUpdateBranchComponent,
-    CompanyManagerComponent,
-    AddOrUpdateCompanyComponent,
-  ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-  ],
+  declarations: [HomeComponent],
+  imports: [SharedModule, RouterModule.forChild(routes)],
 })
-export class MainModule { }
+export class MainModule {}

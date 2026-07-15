@@ -1,0 +1,16 @@
+{
+  "menu": {
+    "home": "Home",
+    "dashboard": "Dashboard Overview",
+    "analytics": "Analytics Reports",
+    "users": "User Management",
+    "settings": "System Settings",
+    "roles": "Permissions & Roles",
+    "logs": "System Logs",
+    "humanResource": "Human Resources",
+    "employeeList": "Employee List",
+    "roleList": "Role List",
+    "auditLog": "Audit Log",
+    "systemConfig": "System Config"
+  }
+}

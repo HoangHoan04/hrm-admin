@@ -1,0 +1,19 @@
+{
+  "search": {
+    "placeholder": "Nhập tên trang hoặc chức năng...",
+    "results": "Kết quả tìm kiếm",
+    "noResults": "Không tìm thấy kết quả nào",
+    "tryAnother": "Hãy thử tìm kiếm với từ khóa khác",
+    "popularPages": "Chức năng phổ biến",
+    "popularDashboard": "Bảng điều khiển",
+    "popularAnalytics": "Phân tích số liệu",
+    "popularUsers": "Quản lý thành viên",
+    "popularSettings": "Cài đặt hệ thống",
+    "recentSearches": "Tìm kiếm gần đây",
+    "clearAll": "Xóa tất cả",
+    "remove": "Xóa",
+    "noRecent": "Chưa có lịch sử tìm kiếm",
+    "navigate": "Di chuyển",
+    "select": "Chọn"
+  }
+}

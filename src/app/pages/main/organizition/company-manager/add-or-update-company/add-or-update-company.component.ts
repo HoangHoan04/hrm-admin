@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Observable } from 'rxjs';
-import { ApiService } from '../../../../../core/services/api.service';
+import { ROUTES_CONFIG } from '../../../../../core/constants/routes.config';
 import { Company } from '../../../../../core/models/organization.models';
+import { ApiService } from '../../../../../core/services/api.service';
 
 @Component({
   standalone: false,
   selector: 'app-add-or-update-company',
   templateUrl: './add-or-update-company.component.html',
-  styleUrls: ['./add-or-update-company.component.scss']
+  styleUrls: ['./add-or-update-company.component.scss'],
 })
 export class AddOrUpdateCompanyComponent implements OnInit {
   id: string | null = null;
@@ -24,7 +24,7 @@ export class AddOrUpdateCompanyComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly message: NzMessageService,
-    private readonly apiService: ApiService
+    private readonly apiService: ApiService,
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class AddOrUpdateCompanyComponent implements OnInit {
       address: ['', [Validators.maxLength(500)]],
       hotline: ['', [Validators.maxLength(20)]],
       taxCode: ['', [Validators.maxLength(50)]],
-      description: ['']
+      description: [''],
     });
   }
 
@@ -60,24 +60,25 @@ export class AddOrUpdateCompanyComponent implements OnInit {
           address: company.address,
           hotline: company.hotline,
           taxCode: company.taxCode,
-          description: company.description
+          description: company.description,
         });
         this.loading = false;
       },
       error: (err: any) => {
         this.message.error(err.error || 'Không thể tải thông tin chi tiết công ty.');
         this.goBack();
-      }
+      },
     });
   }
 
   goBack(): void {
-    this.router.navigate(['/organization/company']);
+    const basePath = ROUTES_CONFIG.ORGANIZATION.children.COMPANY_MANAGER.path;
+    this.router.navigate([basePath]);
   }
 
   submitForm(): void {
     if (this.validateForm.invalid) {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -89,23 +90,19 @@ export class AddOrUpdateCompanyComponent implements OnInit {
     this.submitting = true;
     const value = this.validateForm.value;
 
-    const endpoint = this.isEdit
-      ? this.apiService.COMPANY.UPDATE
-      : this.apiService.COMPANY.CREATE;
+    const endpoint = this.isEdit ? this.apiService.COMPANY.UPDATE : this.apiService.COMPANY.CREATE;
 
     this.apiService.post<any>(endpoint, value).subscribe({
       next: () => {
         this.message.success(
-          this.isEdit
-            ? 'Cập nhật thông tin công ty thành công!'
-            : 'Thêm mới công ty thành công!'
+          this.isEdit ? 'Cập nhật thông tin công ty thành công!' : 'Thêm mới công ty thành công!',
         );
         this.goBack();
       },
       error: (err: any) => {
         this.message.error(err.error || 'Lưu thông tin thất bại.');
         this.submitting = false;
-      }
+      },
     });
   }
 }

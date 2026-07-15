@@ -1,0 +1,17 @@
+{
+  "tabsBar": {
+    "maximize": "Phóng to không gian làm việc",
+    "restore": "Khôi phục bố cục",
+    "refresh": "Làm mới",
+    "refreshAll": "Làm mới tất cả",
+    "closeCurrent": "Đóng tab hiện tại",
+    "closeOther": "Đóng các tab khác",
+    "closeAll": "Đóng tất cả",
+    "closeLeft": "Đóng các tab bên trái",
+    "closeRight": "Đóng các tab bên phải",
+    "close": "Đóng",
+    "duplicate": "Nhân đôi tab",
+    "pin": "Ghim",
+    "unpin": "Bỏ ghim"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "tabsBar": {
+    "maximize": "Maximize Workspace",
+    "restore": "Restore Layout",
+    "refresh": "Refresh",
+    "refreshAll": "Refresh All",
+    "closeCurrent": "Close Current Tab",
+    "closeOther": "Close Other Tabs",
+    "closeAll": "Close All Tabs",
+    "closeLeft": "Close Tabs to the Left",
+    "closeRight": "Close Tabs to the Right",
+    "close": "Close",
+    "duplicate": "Duplicate Tab",
+    "pin": "Pin Tab",
+    "unpin": "Unpin Tab"
+  }
+}

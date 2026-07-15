@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DashboardService, DashboardSettings } from '../../core/services/dashboard.service';
 
@@ -15,7 +16,14 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   watermarkTiles: number[] = [];
 
-  constructor(private ds: DashboardService) {
+  isNavigating = false;
+  currentTransitionState = 'ready';
+
+  constructor(
+    private ds: DashboardService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
     this.s = ds.snapshot;
   }
 
@@ -24,13 +32,46 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       this.ds.settings$.subscribe((settings) => {
         this.s = settings;
         this.updateWatermarkTiles();
+        this.cdr.markForCheck();
       }),
     );
     this.updateWatermarkTiles();
+
+    this.sub.add(
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.isNavigating = true;
+          if (this.s.pageTransition) {
+            this.currentTransitionState = 'exit';
+          }
+          this.cdr.markForCheck();
+        } else if (
+          event instanceof NavigationEnd ||
+          event instanceof NavigationCancel ||
+          event instanceof NavigationError
+        ) {
+          setTimeout(() => {
+            this.isNavigating = false;
+            if (this.s.pageTransition) {
+              this.currentTransitionState = 'enter';
+              setTimeout(() => {
+                this.currentTransitionState = 'ready';
+                this.cdr.markForCheck();
+              }, 400);
+            }
+            this.cdr.markForCheck();
+          }, 300);
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  prepareRoute(outlet: RouterOutlet): string | null {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   private updateWatermarkTiles(): void {
@@ -39,3 +80,4 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     this.watermarkTiles = Array.from({ length: cols * rows }, (_, i) => i);
   }
 }
+

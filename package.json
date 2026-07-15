@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "node scripts/generate-i18n-manifest.js",
     "start": "ng serve --open",
+    "prebuild": "node scripts/generate-i18n-manifest.js",
     "build": "ng build",
+    "prewatch": "node scripts/generate-i18n-manifest.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:admin-dashboard-angular": "node dist/admin-dashboard-angular/server/server.mjs"

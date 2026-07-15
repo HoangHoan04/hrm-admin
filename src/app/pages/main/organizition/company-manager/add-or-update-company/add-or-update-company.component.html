@@ -1,4 +1,8 @@
 <nz-card [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+  <ng-container *ngTemplateOutlet="formTpl"></ng-container>
+</nz-card>
+
+<ng-template #formTpl>
   <nz-spin [nzSpinning]="loading">
     <form nz-form [formGroup]="validateForm" nzLayout="vertical" (ngSubmit)="submitForm()">
       <div nz-row [nzGutter]="24">
@@ -6,7 +10,13 @@
           <nz-form-item>
             <nz-form-label [nzRequired]="true">Mã công ty</nz-form-label>
             <nz-form-control nzErrorTip="Vui lòng nhập mã công ty!">
-              <input nz-input formControlName="code" placeholder="Ví dụ: HHT" [disabled]="isEdit" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="code"
+                placeholder="Ví dụ: HHT"
+                [disabled]="isEdit"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -14,7 +24,12 @@
           <nz-form-item>
             <nz-form-label [nzRequired]="true">Mã số thuế</nz-form-label>
             <nz-form-control nzErrorTip="Vui lòng nhập mã số thuế!">
-              <input nz-input formControlName="taxCode" placeholder="MST / Số ĐKKD" />
+              <input
+                nzSize="large"
+                nz-input
+                formControlName="taxCode"
+                placeholder="MST / Số ĐKKD"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -23,52 +38,77 @@
       <nz-form-item>
         <nz-form-label [nzRequired]="true">Tên công ty</nz-form-label>
         <nz-form-control nzErrorTip="Vui lòng nhập tên công ty!">
-          <input nz-input formControlName="name" placeholder="Ví dụ: CÔNG TY TNHH CÔNG NGHỆ HOÀNG HOAN" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="name"
+            placeholder="Ví dụ: CÔNG TY TNHH CÔNG NGHỆ HOÀNG HOAN"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label>Địa chỉ trụ sở chính</nz-form-label>
         <nz-form-control>
-          <input nz-input formControlName="address" placeholder="Địa chỉ đăng ký doanh nghiệp" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="address"
+            placeholder="Địa chỉ đăng ký doanh nghiệp"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label>Điện thoại / Hotline</nz-form-label>
         <nz-form-control>
-          <input nz-input formControlName="hotline" placeholder="Ví dụ: 024.7300.2424" />
+          <input
+            nzSize="large"
+            nz-input
+            formControlName="hotline"
+            placeholder="Ví dụ: 024.7300.2424"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label>Mô tả doanh nghiệp</nz-form-label>
         <nz-form-control>
-          <textarea nz-input formControlName="description" rows="4" placeholder="Thông tin giới thiệu về doanh nghiệp..."></textarea>
+          <textarea
+            nzSize="large"
+            nz-input
+            formControlName="description"
+            rows="4"
+            placeholder="Thông tin giới thiệu về doanh nghiệp..."
+          ></textarea>
         </nz-form-control>
       </nz-form-item>
 
-      <div class="form-actions">
+      <div class="form-actions" style="margin-top: 24px">
         <button nz-button nzType="default" type="button" (click)="goBack()" [disabled]="submitting">
           <i nz-icon nzType="arrow-left"></i> Quay lại
         </button>
-        <button nz-button nzType="primary" type="submit" [nzLoading]="submitting" style="margin-left: 12px;">
+        <button
+          nz-button
+          nzType="primary"
+          type="submit"
+          [nzLoading]="submitting"
+          style="margin-left: 12px"
+        >
           <i nz-icon nzType="save"></i> Lưu thông tin
         </button>
       </div>
     </form>
   </nz-spin>
-</nz-card>
+</ng-template>
 
 <ng-template #titleTemplate>
-  <span style="font-size: 18px; font-weight: 600; color: var(--foreground);">
-    <i nz-icon nzType="bank" style="margin-right: 8px; color: var(--primary);"></i>
+  <span style="font-size: 18px; font-weight: 600; color: var(--foreground)">
+    <i nz-icon nzType="bank" style="margin-right: 8px; color: var(--primary)"></i>
     {{ isEdit ? 'Cập Nhật Thông Tin Công Ty' : 'Thêm Công Ty Mới' }}
   </span>
 </ng-template>
 
 <ng-template #extraTemplate>
-  <button nz-button nzType="default" (click)="goBack()">
-    Danh sách công ty
-  </button>
+  <button nz-button nzType="default" (click)="goBack()">Danh sách công ty</button>
 </ng-template>

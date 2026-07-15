@@ -1,0 +1,23 @@
+{
+  "common": {
+    "developing": "Chức năng đang được phát triển.",
+    "goHome": "Về trang chủ",
+    "retry": "Thử lại",
+    "stt": "STT",
+    "actionsHeader": "Thao tác",
+    "actions": {
+      "create": "Thêm mới",
+      "update": "Cập nhật",
+      "delete": "Xóa",
+      "refresh": "Làm mới",
+      "uploadExcel": "Nhập Excel",
+      "downloadTemplate": "Tải file mẫu",
+      "uploadFile": "Tải file lên",
+      "exportExcel": "Xuất Excel",
+      "exportPdf": "Xuất PDF",
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "view": "Xem chi tiết"
+    }
+  }
+}

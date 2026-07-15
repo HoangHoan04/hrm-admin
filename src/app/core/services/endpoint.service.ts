@@ -7,12 +7,11 @@ import { environment } from '../../../environments/environment';
 export class EndpointService {
   private readonly baseUrl = environment.apiUrl;
 
-  // ─── AUTH ENDPOINTS ───
   AUTH = {
+    BASE: `${this.baseUrl}/auth`,
     LOGIN: `${this.baseUrl}/auth/login`,
   };
 
-  // ─── COMPANY ENDPOINTS ───
   COMPANY = {
     PAGINATION: `${this.baseUrl}/Companies/list`,
     DETAIL: `${this.baseUrl}/Companies/detail`,
@@ -23,7 +22,6 @@ export class EndpointService {
     SELECT_BOX: `${this.baseUrl}/Companies/select-box`,
   };
 
-  // ─── BRANCH ENDPOINTS ───
   BRANCH = {
     PAGINATION: `${this.baseUrl}/Branches/list`,
     DETAIL: `${this.baseUrl}/Branches/detail`,
@@ -32,5 +30,9 @@ export class EndpointService {
     ACTIVATE: `${this.baseUrl}/Branches/activate`,
     DEACTIVATE: `${this.baseUrl}/Branches/deactivate`,
     SELECT_BOX: `${this.baseUrl}/Branches/select-box`,
+  };
+
+  ACTION_LOG = {
+    BASE: `${this.baseUrl}/action-logs`,
   };
 }

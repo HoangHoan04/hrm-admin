@@ -1,0 +1,14 @@
+{
+  "organization": {
+    "branch": {
+      "title": "Branch Management",
+      "code": "Branch Code",
+      "name": "Branch Name",
+      "address": "Address",
+      "ipAddress": "Attendance IP Range",
+      "companyName": "Company",
+      "status": "Active",
+      "createdAt": "Founding Date"
+    }
+  }
+}

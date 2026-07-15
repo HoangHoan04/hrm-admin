@@ -1,0 +1,14 @@
+{
+  "organization": {
+    "branch": {
+      "title": "Quản lý chi nhánh",
+      "code": "Mã chi nhánh",
+      "name": "Tên chi nhánh",
+      "address": "Địa chỉ",
+      "ipAddress": "Dải IP chấm công",
+      "companyName": "Công ty",
+      "status": "Hoạt động",
+      "createdAt": "Ngày thành lập"
+    }
+  }
+}

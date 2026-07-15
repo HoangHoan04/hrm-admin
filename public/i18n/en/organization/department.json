@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "department": {
+      "title": "Department Management",
+      "code": "Department Code",
+      "name": "Department Name",
+      "branchName": "Branch",
+      "status": "Status",
+      "createdAt": "Created Date",
+      "description": "Functional Description"
+    }
+  }
+}

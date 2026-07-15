@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "part": {
+      "title": "Quản lý bộ phận",
+      "code": "Mã bộ phận",
+      "name": "Tên bộ phận",
+      "departmentName": "Bộ phận/Phòng ban",
+      "status": "Trạng thái",
+      "createdAt": "Ngày tạo",
+      "description": "Mô tả chi tiết"
+    }
+  }
+}

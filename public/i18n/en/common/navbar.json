@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "toggleSidebar": "Collapse/Expand Sidebar",
+    "quickSearch": "Search...",
+    "openSettings": "Open settings",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out",
+    "changeTheme": "Change Theme"
+  }
+}

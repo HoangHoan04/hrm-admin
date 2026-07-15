@@ -17,18 +17,19 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { ActionLogComponent } from './components/action-log/action-log.component';
 import { TableCustomComponent } from './components/table-custom/table-custom.component';
 
 @NgModule({
-  declarations: [
-    TableCustomComponent,
-  ],
+  declarations: [TableCustomComponent, ActionLogComponent],
   imports: [
     TranslatePipe,
     CommonModule,
@@ -55,9 +56,12 @@ import { TableCustomComponent } from './components/table-custom/table-custom.com
     NzModalModule,
     NzFormModule,
     NzSpinModule,
+    NzPaginationModule,
+    NzTabsModule,
   ],
   exports: [
     TableCustomComponent,
+    ActionLogComponent,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -83,6 +87,8 @@ import { TableCustomComponent } from './components/table-custom/table-custom.com
     NzModalModule,
     NzFormModule,
     NzSpinModule,
+    NzPaginationModule,
+    NzTabsModule,
   ],
 })
 export class SharedModule {}

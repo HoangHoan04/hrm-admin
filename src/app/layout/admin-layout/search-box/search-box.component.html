@@ -9,7 +9,7 @@
   <div class="search-dialog" (click)="$event.stopPropagation()">
     <div class="search-header">
       <span nz-icon nzType="search" nzTheme="outline" class="search-header-icon"></span>
-      <input
+      <input nzSize="large"
         class="search-input"
         [(ngModel)]="query"
         (keydown)="onInputKeydown($event)"
@@ -158,7 +158,7 @@
         </span>
       </div>
       <div class="search-footer-right">
-        <span nz-icon nzType="command" nzTheme="outline"></span>
+        <kbd class="search-kbd-sm">⌘</kbd>
         <span>Search Portal</span>
       </div>
     </div>

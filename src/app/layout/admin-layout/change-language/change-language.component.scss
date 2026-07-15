@@ -15,7 +15,7 @@ app-change-language {
       transform 0.1s ease;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
+      background-color: var(--muted, rgba(0, 0, 0, 0.05));
     }
 
     &:active {
@@ -47,7 +47,7 @@ app-change-language {
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.08),
     0 10px 24px -4px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
   overflow: hidden;
 }
 
@@ -90,7 +90,7 @@ app-change-language {
 .lang-text {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.85);
+  color: var(--foreground, rgba(0, 0, 0, 0.85));
   white-space: nowrap;
 }
 

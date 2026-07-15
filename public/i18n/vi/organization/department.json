@@ -1,0 +1,13 @@
+{
+  "organization": {
+    "department": {
+      "title": "Quản lý phòng ban",
+      "code": "Mã phòng ban",
+      "name": "Tên phòng ban",
+      "branchName": "Chi nhánh",
+      "status": "Trạng thái",
+      "createdAt": "Ngày tạo",
+      "description": "Mô tả chức năng"
+    }
+  }
+}

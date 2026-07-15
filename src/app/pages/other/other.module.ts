@@ -17,4 +17,4 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [SharedModule],
 })
-export class OtherModule {}
+export class OtherModule { }

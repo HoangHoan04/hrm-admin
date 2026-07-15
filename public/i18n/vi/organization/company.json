@@ -1,0 +1,15 @@
+{
+  "organization": {
+    "company": {
+      "title": "Quản lý doanh nghiệp",
+      "code": "Mã công ty",
+      "name": "Tên công ty",
+      "address": "Địa chỉ trụ sở",
+      "hotline": "Điện thoại/Hotline",
+      "taxCode": "Mã số thuế",
+      "status": "Trạng thái",
+      "createdAt": "Ngày hoạt động",
+      "description": "Mô tả / Ghi chú"
+    }
+  }
+}

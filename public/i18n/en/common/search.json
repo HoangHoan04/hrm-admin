@@ -1,0 +1,19 @@
+{
+  "search": {
+    "placeholder": "Type page name to search...",
+    "results": "Search Results",
+    "noResults": "No results found",
+    "tryAnother": "Try searching with a different term",
+    "popularPages": "Popular Pages",
+    "popularDashboard": "Dashboard",
+    "popularAnalytics": "Analytics",
+    "popularUsers": "Users",
+    "popularSettings": "Settings",
+    "recentSearches": "Recent Searches",
+    "clearAll": "Clear all",
+    "remove": "Remove",
+    "noRecent": "No recent searches",
+    "navigate": "Navigate",
+    "select": "Select"
+  }
+}

@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ApiService } from '../../../../../core/services/api.service';
 import { Branch, CompanySelectBoxDto } from '../../../../../core/models/organization.models';
+import { ApiService } from '../../../../../core/services/api.service';
 
 @Component({
   standalone: false,
   selector: 'app-add-or-update-branch',
   templateUrl: './add-or-update-branch.component.html',
-  styleUrls: ['./add-or-update-branch.component.scss']
+  styleUrls: ['./add-or-update-branch.component.scss'],
 })
 export class AddOrUpdateBranchComponent implements OnInit {
   id: string | null = null;
@@ -24,7 +24,7 @@ export class AddOrUpdateBranchComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly message: NzMessageService,
-    private readonly apiService: ApiService
+    private readonly apiService: ApiService,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class AddOrUpdateBranchComponent implements OnInit {
       description: [''],
       shortName: [''],
       type: [''],
-      groupSalary: ['']
+      groupSalary: [''],
     });
   }
 
@@ -64,7 +64,7 @@ export class AddOrUpdateBranchComponent implements OnInit {
       },
       error: () => {
         this.message.error('Không thể tải danh sách công ty để chọn.');
-      }
+      },
     });
   }
 
@@ -82,14 +82,14 @@ export class AddOrUpdateBranchComponent implements OnInit {
           description: branch.description,
           shortName: branch.shortName,
           type: branch.type,
-          groupSalary: branch.groupSalary
+          groupSalary: branch.groupSalary,
         });
         this.loading = false;
       },
       error: (err: any) => {
         this.message.error(err.error || 'Không thể tải chi tiết chi nhánh.');
         this.goBack();
-      }
+      },
     });
   }
 
@@ -99,7 +99,7 @@ export class AddOrUpdateBranchComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.invalid) {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -111,23 +111,19 @@ export class AddOrUpdateBranchComponent implements OnInit {
     this.submitting = true;
     const value = this.validateForm.value;
 
-    const endpoint = this.isEdit
-      ? this.apiService.BRANCH.UPDATE
-      : this.apiService.BRANCH.CREATE;
+    const endpoint = this.isEdit ? this.apiService.BRANCH.UPDATE : this.apiService.BRANCH.CREATE;
 
     this.apiService.post<any>(endpoint, value).subscribe({
       next: () => {
         this.message.success(
-          this.isEdit
-            ? 'Cập nhật chi nhánh thành công!'
-            : 'Thêm mới chi nhánh thành công!'
+          this.isEdit ? 'Cập nhật chi nhánh thành công!' : 'Thêm mới chi nhánh thành công!',
         );
         this.goBack();
       },
       error: (err: any) => {
         this.message.error(err.error || 'Lưu thông tin thất bại.');
         this.submitting = false;
-      }
+      },
     });
   }
 }

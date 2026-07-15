@@ -1,0 +1,15 @@
+{
+  "organization": {
+    "company": {
+      "title": "Company Management",
+      "code": "Company Code",
+      "name": "Company Name",
+      "address": "Headquarters Address",
+      "hotline": "Hotline/Phone",
+      "taxCode": "Tax Code",
+      "status": "Status",
+      "createdAt": "Active Date",
+      "description": "Description / Notes"
+    }
+  }
+}

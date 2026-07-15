@@ -5,20 +5,36 @@
     <div class="auth-blob auth-blob--3"></div>
     <div class="auth-blob auth-blob--4"></div>
     <div class="auth-grid"></div>
+
+    <!-- Glassmorphism Card Panel -->
+    <div class="auth-glass-card">
+      <h2 class="glass-title">{{ 'auth.welcomeTitle' | translate }}</h2>
+      <div class="glass-graphic-container">
+        <div class="graphic-shape shape-sphere"></div>
+        <div class="graphic-shape shape-donut"></div>
+        <div class="graphic-shape shape-pill"></div>
+      </div>
+      <p class="glass-desc">{{ 'auth.welcomeDesc' | translate }}</p>
+    </div>
   </div>
 
   <div class="auth-content">
+    <div class="auth-top-actions">
+      <app-toggle-theme></app-toggle-theme>
+      <app-change-language></app-change-language>
+    </div>
+
     <div class="auth-header">
       <div class="auth-logo">
-        <span nz-icon nzType="dashboard" nzTheme="fill"></span>
+        <span nz-icon nzType="apartment" nzTheme="outline"></span>
       </div>
-      <span class="auth-brand">AdminHub</span>
+      <span class="auth-brand">HrmStart</span>
     </div>
 
     <div class="auth-card">
       <router-outlet></router-outlet>
     </div>
 
-    <p class="auth-copy">&copy; 2026 AdminHub. All rights reserved.</p>
+    <p class="auth-copy">&copy; 2026 HrmStart. All rights reserved.</p>
   </div>
 </div>
